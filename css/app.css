@@ -2016,6 +2016,9 @@ section.tracks-content.tracks-text content .credit {
   text-align: right;
   color: #808080;
 }
+section.tracks-content.tracks-text ul#keywords {
+  opacity: 0.85;
+}
 section.thumbnails-grid.tracks-content content {
   display: inline;
   float: left;
