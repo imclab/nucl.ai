@@ -6,6 +6,10 @@
     usages in service of Animation.
   speakers:
     - Paul Kanyuk
+  room: amphitheatre
+  time:
+    start: 16:30
+    finish: 17:30
 
 - title: "Building the Massive Crowds of Assassin’s Creed Unity"
   description: >
@@ -18,8 +22,12 @@
   speakers:
     - François Cournoyer
     - Antoine Fortier
+  room: amphitheatre
+  time:
+    start: 14:00
+    finish: 15:00
 
-- title: "Crowds Patches"
+- title: "Crowds Patches for Populating Virtual Worlds"
   description: >
     We traverse virtual worlds more and more often. Their size is always getting larger, up to the entire earth in the eaxmple 
     of virtual globes. Populating such virtual worlds remain a difficult challenge. Populating virtual cities like Los Santos 
@@ -35,6 +43,10 @@
     places according to new paradigms, high level control, without need of expertise on crowd animation systems. 
   speakers:
     - Julien Pettré
+  room: masterclass
+  time:
+    start: 12:00
+    finish: 12:45
 
 - title: "Creating The Epic Sky Battle In Guardians of the Galaxy"
   description: >
@@ -42,13 +54,21 @@
     final sky battle for Marvels Guardians of the Galaxy.
   speakers:
     - Adam Davis
+  room: amphitheatre
+  time:
+    start: 10:00
+    finish: 11:00
 
-#- title: "Avoidance & locomotion"
-#  description: >
-#    Creating believable and responsive locomotion animation for simulated agents is a common problem for small indie projects 
-#    as well as large productions. In this presentation we will take a peek at recent R&D from Unity where we have explored a 
-#    solution to the locomotion animation problem. The talk will take a close look at both the velocity based obstacle avoidance 
-#    as well as parametric animation controller to find a common interface. We will propose a method that can be quickly set up 
-#    for a small project with limited resources, and allows fine tuning for better quality animation.
-#  speakers:
-#    - Mikko Mononen
+- title: "Believable and Responsive Locomotion for Simulated Agents"
+  description: >
+    Creating believable and responsive locomotion animation for simulated agents is a common problem for small indie projects 
+    as well as large productions. In this presentation we will take a peek at recent R&D from Unity where we have explored a 
+    solution to the locomotion animation problem. The talk will take a close look at both the velocity based obstacle avoidance 
+    as well as parametric animation controller to find a common interface. We will propose a method that can be quickly set up 
+    for a small project with limited resources, and allows fine tuning for better quality animation.
+  speakers:
+    - Mikko Mononen
+  room: masterclass
+  time:
+    start: 14:45
+    finish: 15:30

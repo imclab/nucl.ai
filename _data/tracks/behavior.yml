@@ -6,12 +6,20 @@
     This approach has been employed to model ambient interactions in Final Fantasy XV: Episode Duscae and is being extended for Final Fantasy XV. Drawing examples from this game, we show the flexibility and expressiveness of the resulting scripting system.
   speakers:
     - Hendrik Skubch
+  room: amphitheatre
+  time:
+    start: 16:45
+    finish: 17:30
 
 - title: "Behavior Trees and Blackboards in EVE Online"
   description: >
     This talk will cover the introduction of Behavior Trees and Blackboards into EVE Online and reviewing some of the challenges involved.  Also covered some of the design choices made in order to manage behavior modularity and group behaviors while keeping behaviors reactive and event driven.
   speakers:
     - Freyr Magnússon
+  room: amphitheatre
+  time:
+    start: 14:00
+    finish: 14:45
 
 - title: "Case-based Reasoning for Player Behavior Cloning in Killer Instinct"
   description: >
@@ -19,31 +27,30 @@
     The techniques we use are broadly applicable, and during the talk we will delve into topics like feature selection and creating distance functions capable of reproducing complex behaviors. Examples of such behaviors include avoiding projectiles dynamically, how the player approaches the fight differently from different ranges, and capturing how a player adapts to their opponent’s strategy during a match. 
   speakers:
     - Bruce Hayles
+  room: amphitheatre
+  time:
+    start: 10:00
+    finish: 11:00
 
-- title: "Behavior Design for an Operational Military Simulation"
+- title: "Designing realistic behaviors for a military training simulation"
   description: >
-    For armies, training is both very important and expensive and potentially dangerous to do in the real worlds; 
-    the use of simulations is therefore widespread. When using simulations to confront trainees to face complex situations, 
-    the modeling of realistic automated forces becomes essential. This implies the construction of behavior models 
-    to make automated forces behave in the simulated environment.
-    This talk will focus on this construction process, from the analysis of military doctrine and the end user needs 
-    to the behavior modeling by specialists and finally the test and validation process. 
-    MASA SWORD, a simulation for command post training used by many armies throughout will serve as an illustration for 
-    this presentation.
-  takeaways:
-    -
-    - 
-    - 
+    Simulation is a one of the main tools for armies’ training; it is used to confront trainees to complex situations that would be expensive and potentially dangerous to do in the real world. In this context the modeling of realistic automated forces becomes essential.
+    This talk will focus on the behavior modeling process, from the analysis of the operational requirements and the military doctrine to the actual implementation and finally the test and validation process. Attendees will learn what are the main guidelines to build a maintainable library of behaviors that are both perceived and measured as realistics.
+    MASA SWORD, a simulation for command post training used by many armies throughout the world will serve as an illustration for this presentation.
   speakers:
     - Newfel Messouci
+  room: masterclass
+  time:
+    start: 12:30
+    finish: 13:00
 
-- title: "Abstraction in Behavior Trees"
+- title: "Reusability and abstraction: the next evolution for Behavior Trees"
   description: >
-    Usually abstraction in behavior trees (BT) means the ability to define a tree that can then be reused as a subtree in other trees. That is equivalent to defining a nonparametric function returning evaluation status in standard programming languages. While useful it is a very limited abstraction. We propose a way how to bring more powerful abstractions from standard programming languages into behavior trees.
-    Attendees will learn how to bring abstraction from standard programming languages into behavior trees and how those abstraction could make the creation of behavior trees easier and less error­prone.
-  takeaways:
-    -
-    - 
-    - 
+    Behavior trees (BT), are now commonly used to create autonomous behaviors in games and simulation. While, in practice, a visual programming language, they’re abstraction are limited to the reuse of subtrees in other trees, the equivalent of defining a nonparametric function. While useful it is a very limited abstraction.
+    In this talk, we propose a way to bring more powerful abstractions from general programming languages to BTs. Attendees will learn how local variables and parameterized subtrees are one of the key to make the creation of reusable behavior trees both easier and less error­ prone.
   speakers:
     - Juraj Blaho
+  room: masterclass
+  time:
+    start: 12:00
+    finish: 12:30
