@@ -1535,12 +1535,13 @@ section.people.thumbnails-grid content item.short-bio-mobile {
     display: block;
   }
 }
-section.people.thumbnails-grid content item.description p.conference-title {
+section.people.thumbnails-grid content item.description p.affiliation-position {
   display: inline-block;
   float: left;
 }
 section.people.thumbnails-grid content item.description p.track-topic {
   clear: both;
+  text-align: left;
 }
 section.people.thumbnails-grid content item.description p.track-topic a {
   text-decoration: none;
@@ -1562,10 +1563,14 @@ section.people.thumbnails-grid content item.description p.links a.twitter {
 section.people.thumbnails-grid content item.description p.bio {
   clear: both;
 }
+section.people.thumbnails-grid content item.description p.role {
+  font-weight: bold;
+  color: #ffffff;
+}
 section.people.thumbnails-grid content item.description div.affiliation-wrap {
   float: right;
   text-align: right;
-  padding-top: 5px;
+  padding-top: 30px;
   padding-bottom: 10px;
 }
 @media screen and (max-width: 432px) {
@@ -1578,6 +1583,9 @@ section.people.thumbnails-grid content item.description div.affiliation-wrap {
 section.people.thumbnails-grid content item.description div.affiliation-wrap p {
   margin: 0;
 }
+section.people.thumbnails-grid content item.description div.affiliation-wrap p a {
+  color: #ff9300;
+}
 @media screen and (min-width: 433px) {
   section.people.thumbnails-grid content item.description p.affiliation {
     padding-left: 10px;
@@ -1585,11 +1593,6 @@ section.people.thumbnails-grid content item.description div.affiliation-wrap p {
 }
 section.people.thumbnails-grid content item.description p.affiliation a {
   text-decoration: none;
-}
-@media screen and (max-width: 432px) {
-  section.people.thumbnails-grid content item.description p.affiliation-position.no-data {
-    display: none;
-  }
 }
 @media screen and (max-width: 432px) {
   section.people.thumbnails-grid content item.description:not(.last-row) {
@@ -2275,6 +2278,16 @@ sections.page section.faq content item.tickets-review .table.all-access .title {
 sections.page section.faq content p.answer {
   opacity: 0.75;
 }
+section.program-schedule.track-schedule content div.day-wrap {
+  margin: 0;
+}
+section.program-schedule.track-schedule content table.header-table {
+  display: none;
+}
+section.program-schedule.track-schedule content table.talks-list {
+  margin: 0;
+  padding: 0;
+}
 section.program-schedule content {
   display: inline;
   float: left;
@@ -2294,6 +2307,12 @@ section.program-schedule content table {
   width: 100%;
   padding-bottom: 3em;
   padding-top: 1em;
+}
+section.program-schedule content table.clickable:hover {
+  cursor: pointer;
+}
+section.program-schedule content table.clickable:hover .button-wrap .button-expand {
+  color: #ff9300;
 }
 @media screen and (max-width: 432px) {
   section.program-schedule content table {
@@ -2325,7 +2344,7 @@ section.program-schedule content table .button-wrap {
   }
 }
 section.program-schedule content table .button-wrap .button-expand {
-  color: #808080;
+  color: #ffffff;
   width: 0;
   height: 0;
   border-left: 1em solid transparent;
@@ -2421,10 +2440,10 @@ section.program-schedule content table .track.ambient .marker {
   background-color: #00ffd8;
 }
 section.program-schedule content table .track.procedural {
-  color: #853bca;
+  color: #00789f;
 }
 section.program-schedule content table .track.procedural .marker {
-  background-color: #853bca;
+  background-color: #00789f;
 }
 section.program-schedule content table .track.behavior {
   color: #e31977;
@@ -2433,16 +2452,16 @@ section.program-schedule content table .track.behavior .marker {
   background-color: #e31977;
 }
 section.program-schedule content table .track.analytics {
-  color: #00789f;
-}
-section.program-schedule content table .track.analytics .marker {
-  background-color: #00789f;
-}
-section.program-schedule content table .track.decisions {
   color: #ccff00;
 }
-section.program-schedule content table .track.decisions .marker {
+section.program-schedule content table .track.analytics .marker {
   background-color: #ccff00;
+}
+section.program-schedule content table .track.decisions {
+  color: #9656d1;
+}
+section.program-schedule content table .track.decisions .marker {
+  background-color: #9656d1;
 }
 section.program-schedule content table .track.systems {
   color: #5cb214;
@@ -2457,10 +2476,10 @@ section.program-schedule content table .track.animation .marker {
   background-color: #ff0031;
 }
 section.program-schedule content table .track.cognition {
-  color: white;
+  color: #e0e0e0;
 }
 section.program-schedule content table .track.cognition .marker {
-  background-color: white;
+  background-color: #e0e0e0;
 }
 section.program-schedule content table.talks-list {
   margin-top: 1em;
@@ -2491,6 +2510,7 @@ section.program-schedule content table.talks-list div.track p.speakers {
 }
 section.program-schedule content table.talks-list div.track p.title {
   margin-top: 0;
+  font-weight: bold;
 }
 section.program-schedule content table.talks-list div.track p.title a {
   color: inherit;
@@ -2509,4 +2529,15 @@ section.program-schedule content .note {
   section.program-schedule content .note {
     font-size: 0.65em;
   }
+}
+section.rooms-schedule.program-schedule content table.talks-list div.track {
+  padding: 0 2em;
+}
+section.rooms-schedule.program-schedule content table.talks-list div.track div.talk-cell-wrap {
+  display: table-cell;
+  height: inherit;
+  vertical-align: middle;
+}
+section.rooms-schedule.program-schedule content table.talks-list tr {
+  vertical-align: top;
 }

@@ -400,7 +400,7 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   $(function() {
-    var days, speakers;
+    var dCount, days, maxHeightDurationRatio, speakers;
     speakers = $("section.program-schedule p.speakers");
     speakers.each(function() {
       var idx, studio, studios, _i, _len, _results;
@@ -425,30 +425,84 @@
         return _results;
       }
     });
+    dCount = 0;
     days = $("section.program-schedule table.talks-list");
     days.each(function() {
-      var day, talks, talksArray;
+      var day, duration, finishDate, finishTime, room, startDate, startTime, talk, talks, talksArray, talksFinishTime, talksStartTime, _i, _j, _len, _len1;
+      dCount++;
       day = $(this);
       talks = day.find("div.track");
       talksArray = [];
       talks.each(function() {
         return talksArray.push($(this));
       });
+      for (_i = 0, _len = talksArray.length; _i < _len; _i++) {
+        talk = talksArray[_i];
+        startTime = talk.attr("time-start");
+        finishTime = talk.attr("time-finish");
+        startDate = new Date("2001/01/01 " + startTime);
+        finishDate = new Date("2001/01/01 " + finishTime);
+        duration = (finishDate.getHours() * 60 + finishDate.getMinutes()) - (startDate.getHours() * 60 + startDate.getMinutes());
+        talk.attr("duration", duration);
+      }
+      talksStartTime = null;
+      talksFinishTime = null;
       talksArray.sort(function(a, b) {
-        var aTime, bTime;
-        aTime = a.attr("time") !== "" ? a.attr("time") : "11:59 pm";
-        bTime = b.attr("time") !== "" ? b.attr("time") : "11:59 pm";
-        return new Date("2001/01/01 " + aTime) - new Date("2001/01/01 " + bTime);
+        var aFinishTime, aStartTime, bFinishTime, bStartTime;
+        aStartTime = new Date("2001/01/01 " + a.attr("time-start"));
+        bStartTime = new Date("2001/01/01 " + b.attr("time-start"));
+        aFinishTime = new Date("2001/01/01 " + a.attr("time-finish"));
+        bFinishTime = new Date("2001/01/01 " + b.attr("time-finish"));
+        if (talksStartTime === null || talksStartTime > aStartTime) {
+          talksStartTime = aStartTime;
+        }
+        if (talksStartTime === null || talksStartTime > bStartTime) {
+          talksStartTime = bStartTime;
+        }
+        if (talksFinishTime === null || talksFinishTime < aFinishTime) {
+          talksFinishTime = aFinishTime;
+        }
+        if (talksFinishTime === null || talksFinishTime < bFinishTime) {
+          talksFinishTime = bFinishTime;
+        }
+        return aStartTime - bStartTime;
       });
-      day.find("td").html("");
-      day.append(talksArray);
+      if ($("section.rooms-schedule").length > 0) {
+        day.find("td.talks-list").remove();
+        for (_j = 0, _len1 = talksArray.length; _j < _len1; _j++) {
+          talk = talksArray[_j];
+          room = talk.attr("room");
+          day.find("td." + room).append(talk);
+        }
+      } else {
+        day.find("td.talks-list").html("");
+        day.append(talksArray);
+      }
       return day.removeClass("not-initialized");
     });
-    return $(".button-expand").click(function() {
+    if ($("section.rooms-schedule").length === 0) {
+      return;
+    }
+    maxHeightDurationRatio = 0;
+    $("table.talks-list div.track").each(function() {
+      var duration, height, ratio;
+      height = $(this).height();
+      duration = $(this).attr("duration");
+      ratio = height / duration;
+      if (ratio > maxHeightDurationRatio) {
+        return maxHeightDurationRatio = ratio;
+      }
+    });
+    $("table.talks-list div.track").each(function() {
+      var duration;
+      duration = $(this).attr("duration");
+      return $(this).height(duration * maxHeightDurationRatio);
+    });
+    return $("section.program-schedule table").click(function() {
       var button, name, talksList;
-      button = $(this);
+      button = $(this).find(".button-expand");
       button.toggleClass("expanded");
-      name = $(this).attr("name");
+      name = button.attr("name");
       talksList = $("table.talks-list[name='" + name + "']");
       talksList.removeClass("not-expanded");
       if (!button.hasClass("expanded")) {
@@ -560,19 +614,13 @@
     if ($("#section-tracks-people").length > 0) {
       thumbnails = new Thumbnails("section-tracks-people", true, true);
     }
-    $("h3 a, li a.scrollable").click(function() {
-      var id;
-      id = $(this).attr("href").split("#")[1];
-      root.scroll(id, $("#" + id).offset().top);
-      return false;
-    });
-    return $(".tracks-people .track-topic a").click(function() {
+    return $("h3 a, li a.scrollable, .tracks-people .track-topic a, .talks-list a").click(function() {
       var id;
       id = $(this).attr("href").split("#")[1];
       if ($("#" + id).length > 0) {
         root.scroll(id, $("#" + id).offset().top);
+        return false;
       }
-      return false;
     });
   });
 
