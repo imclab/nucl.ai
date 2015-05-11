@@ -1,0 +1,58 @@
+{% assign isTrackPage = false %}
+{% for topic in site.data.topics %}
+    {% capture pageName %}{{topic.id}}.html{% endcapture %}
+    {% if page.name == pageName %} 
+        {% assign isTrackPage = true %}
+    {% endif %}
+{% endfor %}
+<div class="day-wrap" name="{{day.title}}">
+    <table class="clickable header-table"> 
+        <tr>
+            <td>
+                <div class="button-wrap"> 
+                    <div class="button-expand expanded" name="{{day.title}}"></div>
+                </div>
+                <div class="titlebar-wrap">
+                    <div class="content-wrap">
+                        <h3>
+                            {{day.title}}
+                        </h3>
+                        <div class="legend">
+                            {% for track in day.tracks %}
+                                <div class="track-wrap">
+                                    {% for topic in site.data.topics %}
+                                        {% if topic.id == track %}
+                                            <div class="track {{track}}">
+                                                <div class="marker"></div>
+                                                <p class="track-name"> {{topic.title}} </p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="talks-list not-initialized animated zoomIn expanded" name="{{day.title}}">
+        {% comment %} Get all talks per day {% endcomment %}
+        <tr>
+            <td class="talks-list">
+                {% if isTrackPage %}
+                    {% capture track %}{{page.name | remove: ".html" }}{% endcapture %}
+                    {% include schedule/track.html %}}
+                {% else %}
+                    {% for track in day.tracks %}
+                        {% include schedule/track.html %}
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td class="timeline"></td>
+            <td class="masterclass"></td>
+            <td class="amphitheatre"></td>
+            <td class="laboratories"></td>
+        </tr>
+    </table>
+</div>

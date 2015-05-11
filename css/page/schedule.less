@@ -1,12 +1,24 @@
 @COLOR_TRACK_ALTERNATE: #fedd2c;
 @COLOR_TRACK_AMBIENT: #00ffd8;
-@COLOR_TRACK_PROCEDUREAL: #853bca;
+@COLOR_TRACK_PROCEDUREAL: #00789f;
 @COLOR_TRACK_BEHAVIOR: #e31977;
-@COLOR_TRACK_ANALYTICS: #00789f;
-@COLOR_TRACK_DECISIONS: #ccff00;
+@COLOR_TRACK_ANALYTICS: #ccff00;
+@COLOR_TRACK_DECISIONS: #9656d1;
 @COLOR_TRACK_SYSTEMS: #5cb214;
 @COLOR_TRACK_ANIMATION: #ff0031;
-@COLOR_TRACK_COGNITION: white;
+@COLOR_TRACK_COGNITION: #e0e0e0;
+
+
+section.program-schedule.track-schedule {
+    content {
+        div.day-wrap { margin: 0; }
+        table.header-table { display: none; }
+        table.talks-list {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
 
 section.program-schedule {
     content {
@@ -18,6 +30,14 @@ section.program-schedule {
             }
         }
         table {
+            &.clickable:hover {
+                cursor: pointer;
+                .button-wrap {
+                    .button-expand {
+                        color: @ORANGE;
+                    }
+                }
+            }
             background-color: @DARK_GREY;
             width: 100%;
             padding-bottom: 3em;
@@ -41,7 +61,7 @@ section.program-schedule {
                 @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { padding-top: 1em; }
                 text-align: right;
                 .button-expand {
-                    color: @GREY;
+                    color: @WHITE;
                     .triangle(1em);
                     border-bottom: 1.5em solid;
                     @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { 
@@ -145,6 +165,7 @@ section.program-schedule {
                 }
                 p.title {
                     margin-top: 0;
+                    font-weight: bold;
                     a { 
                         color: inherit;
                         text-decoration: none;
@@ -160,5 +181,21 @@ section.program-schedule {
             @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { font-size: 0.65em; }
         }
 
+    }
+}
+
+section.rooms-schedule.program-schedule {
+    content {
+        table.talks-list {
+            div.track {
+                padding: 0 2em;
+                div.talk-cell-wrap {
+                    display: table-cell;
+                    height: inherit;
+                    vertical-align: middle;
+                }
+            }
+            tr { vertical-align: top; }
+        }
     }
 }

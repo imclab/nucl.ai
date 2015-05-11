@@ -1,16 +1,57 @@
+
+- title: "Not Just Planning: STRIPs for Ambient NPC Interactions in Final Fantasy XV"
+  description: >
+    Ambient characters are part of many current game titles. Yet, the intrinsic necessity and difficulty to model interactions of these characters with the environment and with each other is not easily overcome. The well-known smart object semantics introduced in The Sims has been widely adapted for its flexibility and scalability. However, classic smart objects lack the ability to deal with multiple characters, and thus are not adequate to fully bring characters to life.
+    We present an interaction-centric approach, in which smart objects instruct multiple characters by means of adaptive scripts formulated based on STRIPs-like rules. Instead of inferring possible world-states as is done in planning, the rules are used to communicate changed attitudes and circumstances between characters via a blackboard. The resulting scripting language constitutes a simple yet powerful way to express multi-character interactions situated in the environment.
+    This approach has been employed to model ambient interactions in Final Fantasy XV: Episode Duscae and is being extended for Final Fantasy XV. Drawing examples from this game, we show the flexibility and expressiveness of the resulting scripting system.
+  speakers:
+    - Hendrik Skubch
+  room: amphitheatre
+  time:
+    start: "16:45"
+    finish: "17:30"
+
 - title: "Behavior Trees and Blackboards in EVE Online"
   description: >
     This talk will cover the introduction of Behavior Trees and Blackboards into EVE Online and reviewing some of the challenges involved.  Also covered some of the design choices made in order to manage behavior modularity and group behaviors while keeping behaviors reactive and event driven.
   speakers:
     - Freyr Magnússon
+  room: amphitheatre
+  time:
+    start: "14:00"
+    finish: "14:45"
 
-#- title: "Behavior design for an operational military simulation"
-#  description: >
-#    For armies, training is both very important and expensive and potentially dangerous to do in the real worlds; 
-#    the use of simulations is therefore widespread. When using simulations to confront trainees to face complex situations, 
-#    the modeling of realistic automated forces becomes essential. This implies the construction of behavior models 
-#    to make automated forces behave in the simulated environment.
-#    This talk will focus on this construction process, from the analysis of military doctrine and the end user needs 
-#    to the behavior modeling by specialists and finally the test and validation process. 
-#    MASA SWORD, a simulation for command post training used by many armies throughout will serve as an illustration for 
-#    this presentation.
+- title: "Case-based Reasoning for Player Behavior Cloning in Killer Instinct"
+  description: >
+    Fighting game players exhibit a wide variety of play styles that evolve with the metagame. Traditional fighting game AIs, however, typically use reactive agents whose difficulty comes from superhuman reaction times and do not attempt to model player behavior.
+    Transitioning from single to multiplayer is a frustrating experience for a lot of players since fighting the default AI is nothing like fighting another player. In Killer Instinct we address this by cloning player behavior, creating living replays of players called Shadows. Players can challenge Shadows of varying skill levels and play styles. This gives players the opportunity to have fun and learn the game without the pressure of online matches.
+    This talk covers the design and implementation of Shadows, a system for player behavior cloning in Killer Instinct. Our implementation of case-based reasoning is discussed, as well as the challenges faced implementing such a system in a fighting game.
+  speakers:
+    - Bruce Hayles
+  room: amphitheatre
+  time:
+    start: "10:00"
+    finish: "11:00"
+
+- title: "Designing realistic behaviors for a military training simulation"
+  description: >
+    Simulation is a one of the main tools for armies’ training; it is used to confront trainees to complex situations that would be expensive and potentially dangerous to do in the real world. In this context the modeling of realistic automated forces becomes essential.
+    This talk will focus on the behavior modeling process, from the analysis of the operational requirements and the military doctrine to the actual implementation and finally the test and validation process. Attendees will learn what are the main guidelines to build a maintainable library of behaviors that are both perceived and measured as realistics.
+    MASA SWORD, a simulation for command post training used by many armies throughout the world will serve as an illustration for this presentation.
+  speakers:
+    - Newfel Messouci
+  room: masterclass
+  time:
+    start: "12:30"
+    finish: "13:00"
+
+- title: "Reusability and abstraction: the next evolution for Behavior Trees"
+  description: >
+    Behavior trees (BTs) are now commonly used to create autonomous behaviors in games and simulation. While, in practice, a visual programming language, their abstractions are commonly limited to the reuse of subtrees in other trees, the equivalent of defining a nonparametric function. While useful it is still a very limited abstraction.
+    In this talk, we propose a way to bring more powerful abstractions from general programming languages to BTs. Attendees will learn how local variables and parameterized subtrees are one of the key to make the creation of reusable behavior trees both easier and less error­ prone.
+  speakers:
+    - Juraj Blaho
+  room: masterclass
+  time:
+    start: "12:00"
+    finish: "12:30"
