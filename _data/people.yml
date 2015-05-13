@@ -73,7 +73,15 @@
     Noor Shaker is a Postdoctoral researcher at the Center for Culture and Games at IT University
     of Copenhagen. Her research interests include player modeling, procedural content generation,
     computational creativity, affective computing and player behavior imitation. She is organizing
-    the Platformerai competition and chairing the IEEE task force on Player Modeling.
+    the Platformer AI competition and chairing the IEEE task force on Player Modeling.
+
+
+- name: Josh McCoy
+  role: track
+  tracks: [cognition]
+  twitter: joshua_mccoy
+  bio: >
+    Josh McCoy is a game developer, computer scientist and cross-disciplinary researcher whose work lies at the confluence of game technology, social science, artificial intelligence and design. His goal is to create playable experiences that communicate to broad audiences and critically address the challenges present in our society while expanding the boundaries of technology. The most recent products of his research involve combining artificial intelligence techniques with social science to create meaningful, responsive and socially engaging game experiences. He was a lead on the experimental video game Prom Week, a game that enables a new level of social interaction between characters via an artificial intelligence system that leverages social science to make social behavior playable. This work has been nominated for the Technical Excellence award in the Independent Games Festival and an IndieCade award. Additionally, his research has been used in a DARPA-funded project to enable trainees to engage socially responsive characters with full-bodied interaction for the purpose of teaching good stranger behavior to soldiers in foreign lands.
 
 - name: Alex J. Champandard
   role: org
@@ -376,6 +384,16 @@
     name: IBM
     url: http://www.ibm.com/
     position: IBM Watson Developer
+  bio: >
+    Dale has been a developer of IBM Watson since early 2011, after the work started to
+    transition Watson from a Research project demonstrated on a quiz show to a commercial
+    platform ready for industry. He now works on how we understand why Watson comes up with
+    the answers that it does and what we can do to improve it, and the transition of the
+    technology to an extensible platform.
+    Prior to this, Dale spent several years as a member of IBM's Emerging Technologies division,
+    creating prototypes and proof-of-concepts in social web and mobile, augmented and virtual
+    realities, biometrics, the mining and analysis of Big Data, and technologies such as MQTT to
+    build the infrastructure to enable the Internet of Things.
   twitter: dalelane
 
 - name: Jeffrey Schlimmer
@@ -434,7 +452,7 @@
   role: speaker
   confirmed: true
   affiliation:
-    name: Bohemia Interactive Simulations
+    name: Bohemia Interactive
     url: https://www.bistudio.com/
     position: Senior AI Developer
   bio: >
@@ -481,7 +499,7 @@
   role: speaker
   confirmed: true
   affiliation:
-    name: Bohemia Interactive Simulations
+    name: Bohemia Interactive
     url: https://www.bistudio.com/
     position: Programmer
   bio: >
@@ -494,3 +512,8 @@
     url: http://www.riotgames.com/
     position: Senior Animation Engineer
   bio: >
+
+- name: Michael Sellers
+  role: speaker
+  bio: >
+  
