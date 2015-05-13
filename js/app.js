@@ -4,6 +4,9 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   root.config = {
+    mobile: {
+      size: 432
+    },
     header: {
       scrollSpeed: 500
     },
@@ -395,12 +398,18 @@
 }).call(this);
 
 (function() {
-  var root;
+  var cellMargin, disableEmptyIntervals, root, timelineIntervalRange;
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
+  timelineIntervalRange = 15;
+
+  disableEmptyIntervals = true;
+
+  cellMargin = null;
+
   $(function() {
-    var days, speakers;
+    var buildSchedule, speakers, tableDisplayed;
     speakers = $("section.program-schedule p.speakers");
     speakers.each(function() {
       var idx, studio, studios, _i, _len, _results;
@@ -425,24 +434,270 @@
         return _results;
       }
     });
-    days = $("section.program-schedule table.talks-list");
-    days.each(function() {
-      var day, talks, talksArray;
-      day = $(this);
-      talks = day.find("div.track");
-      talksArray = [];
-      talks.each(function() {
-        return talksArray.push($(this));
+    buildSchedule = function() {
+      return $("section.program-schedule").each(function() {
+        var assignIntervals, day, dayIdx, days, duration, ellipsisBottom, emptyIntervals, finishTime, idx, interval, intervalDate, intervalHeight, intervalsCount, lastInterval, margin, markEmpty, maxHeightDurationRatio, minutes, offset, positionTop, room, schedule, startTime, talk, talkHoverEnd, talkHoverStart, talks, talksDuration, talksFinishTime, talksStartTime, timeLineHeight, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _len6, _m, _n, _o, _p, _ref, _ref1, _ref2, _ref3, _results;
+        schedule = $(this);
+        days = [];
+        schedule.find("table.talks-list").length;
+        schedule.find("table.talks-list").each(function() {
+          return days.push($(this));
+        });
+        for (dayIdx = _i = 0, _len = days.length; _i < _len; dayIdx = ++_i) {
+          day = days[dayIdx];
+          talks = day.find("div.track");
+          day.talks = [];
+          talks.each(function() {
+            return day.talks.push($(this));
+          });
+          talksStartTime = null;
+          talksFinishTime = null;
+          _ref = day.talks;
+          for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+            talk = _ref[_j];
+            startTime = talk.attr("time-start");
+            finishTime = talk.attr("time-finish");
+            talk.startDate = new Date("2001/01/01 " + startTime);
+            talk.finishDate = new Date("2001/01/01 " + finishTime);
+          }
+          day.talks.sort(function(a, b) {
+            if (talksStartTime === null || talksStartTime > a.startDate) {
+              talksStartTime = a.startDate;
+            }
+            if (talksStartTime === null || talksStartTime > b.startDate) {
+              talksStartTime = b.startDate;
+            }
+            if (talksFinishTime === null || talksFinishTime < a.finishDate) {
+              talksFinishTime = a.finishDate;
+            }
+            if (talksFinishTime === null || talksFinishTime < b.finishDate) {
+              talksFinishTime = b.finishDate;
+            }
+            return a.startDate - b.startDate;
+          });
+          _ref1 = day.talks;
+          for (idx = _k = 0, _len2 = _ref1.length; _k < _len2; idx = ++_k) {
+            talk = _ref1[idx];
+            talk.attr("idx", idx);
+            talk.attr("day", dayIdx);
+            duration = (talk.finishDate.getHours() * 60 + talk.finishDate.getMinutes()) - (talk.startDate.getHours() * 60 + talk.startDate.getMinutes());
+            talk.attr("duration", duration);
+            offset = (talk.startDate.getHours() * 60 + talk.startDate.getMinutes()) - (talksStartTime.getHours() * 60 + talksStartTime.getMinutes());
+            talk.attr("offset", offset);
+            if (talk.finishDate.getHours() === talksFinishTime.getHours() && talk.finishDate.getMinutes() === talksFinishTime.getMinutes()) {
+              talk.attr("last", "true");
+            }
+          }
+          markEmpty = function(interval) {
+            var _l, _len3, _ref2;
+            interval.empty = false;
+            _ref2 = day.talks;
+            for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
+              talk = _ref2[_l];
+              if (talk.startDate <= interval.startDate && talk.finishDate >= interval.finishDate) {
+                return;
+              }
+            }
+            interval.empty = true;
+            interval.attr("empty", true);
+            return interval.addClass("empty");
+          };
+          if (schedule.hasClass("rooms-schedule")) {
+            day.find("td.talks-list").remove();
+            _ref2 = day.talks;
+            for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
+              talk = _ref2[_l];
+              room = talk.attr("room");
+              day.find("td." + room).append(talk);
+            }
+            talksDuration = (talksFinishTime.getHours() * 60 + talksFinishTime.getMinutes()) - (talksStartTime.getHours() * 60 + talksStartTime.getMinutes());
+            intervalsCount = talksDuration / timelineIntervalRange;
+            day.intervals = [];
+            lastInterval = null;
+            day.find("td.timeline div.interval").each(function() {
+              var interval;
+              interval = $(this);
+              if (!interval.hasClass("pattern") && !interval.hasClass("cover-empty")) {
+                return interval.remove();
+              }
+            });
+            for (idx = _m = 0; 0 <= intervalsCount ? _m < intervalsCount : _m > intervalsCount; idx = 0 <= intervalsCount ? ++_m : --_m) {
+              interval = day.find("td.timeline div.interval.pattern").clone().removeClass("pattern");
+              intervalDate = new Date(talksStartTime);
+              intervalDate.setMinutes(intervalDate.getMinutes() + idx * timelineIntervalRange);
+              interval.startDate = new Date(intervalDate);
+              minutes = intervalDate.getMinutes() >= 10 ? intervalDate.getMinutes() : "0" + intervalDate.getMinutes();
+              startTime = intervalDate.getHours() + ":" + minutes;
+              intervalDate.setMinutes(intervalDate.getMinutes() + timelineIntervalRange);
+              interval.finishDate = new Date(intervalDate);
+              minutes = intervalDate.getMinutes() >= 10 ? intervalDate.getMinutes() : "0" + intervalDate.getMinutes();
+              finishTime = intervalDate.getHours() + ":" + minutes;
+              interval.find(".interval-time.start").text(startTime);
+              if (idx === intervalsCount - 1) {
+                interval.find(".interval-time.finish").text(finishTime);
+              }
+              if (disableEmptyIntervals) {
+                markEmpty(interval);
+                interval.displayed = true;
+                if (lastInterval !== null && lastInterval.empty && interval.empty) {
+                  interval.addClass("next-empty");
+                  interval.displayed = false;
+                }
+                if (!interval.empty && lastInterval !== null && lastInterval.empty && !lastInterval.hasClass("next-empty")) {
+                  lastInterval.addClass("orhpaned-empty");
+                }
+                lastInterval = interval;
+              }
+              day.find("td.timeline").append(interval);
+              day.intervals.push(interval);
+            }
+          } else {
+            day.find("td.talks-list").html("");
+            day.append(day.talks);
+          }
+          day.removeClass("not-initialized");
+        }
+        if (!schedule.hasClass("rooms-schedule")) {
+          return;
+        }
+        cellMargin = $("div.interval").first().css("padding-top").split("px")[0];
+        maxHeightDurationRatio = 0;
+        schedule.find("table.talks-list div.track").each(function() {
+          var height, ratio;
+          height = $(this).height();
+          duration = $(this).attr("duration");
+          ratio = height / duration;
+          if (ratio > maxHeightDurationRatio) {
+            return maxHeightDurationRatio = ratio;
+          }
+        });
+        schedule.find("table.talks-list div.track").each(function() {
+          var timelineAlignment;
+          duration = $(this).attr("duration");
+          timelineAlignment = ((duration / timelineIntervalRange) - 1) * cellMargin;
+          return $(this).height((duration * maxHeightDurationRatio) + timelineAlignment);
+        });
+        intervalHeight = timelineIntervalRange * maxHeightDurationRatio;
+        timeLineHeight = null;
+        schedule.find("table.talks-list td.timeline div.interval:not(.cover-empty)").each(function() {
+          return $(this).height(intervalHeight);
+        });
+        timeLineHeight = schedule.find("table.talks-list td.timeline div.interval:last-child .finish").height();
+        schedule.find("table.talks-list td.timeline div.interval:last-child").each(function() {
+          var currentHeight;
+          currentHeight = $(this).height();
+          return $(this).height(timeLineHeight + currentHeight);
+        });
+        schedule.find("div.track[last='true']").each(function() {
+          var currentHeight;
+          currentHeight = $(this).height();
+          return $(this).height(currentHeight + timeLineHeight + parseInt(cellMargin));
+        });
+        ellipsisBottom = Math.floor((intervalHeight - timeLineHeight) / 2);
+        schedule.find("table.talks-list td.timeline div.interval .ellipsis").each(function() {
+          return $(this).css("bottom", ellipsisBottom);
+        });
+        for (_n = 0, _len4 = days.length; _n < _len4; _n++) {
+          day = days[_n];
+          emptyIntervals = function(talk) {
+            var empty, _len5, _o, _ref3;
+            empty = 0;
+            _ref3 = day.intervals;
+            for (_o = 0, _len5 = _ref3.length; _o < _len5; _o++) {
+              interval = _ref3[_o];
+              if (!interval.displayed && interval.startDate < talk.startDate) {
+                empty++;
+              }
+              if (interval.startDate >= talk.startDate) {
+                return empty;
+              }
+            }
+            return empty;
+          };
+          _ref3 = day.talks;
+          for (_o = 0, _len5 = _ref3.length; _o < _len5; _o++) {
+            talk = _ref3[_o];
+            offset = talk.attr("offset");
+            positionTop = offset * maxHeightDurationRatio;
+            margin = ((offset / timelineIntervalRange) + 1) * cellMargin;
+            positionTop = positionTop + margin;
+            positionTop = positionTop - emptyIntervals(talk) * intervalHeight;
+            positionTop = positionTop - emptyIntervals(talk) * cellMargin;
+            talk.css("top", positionTop + "px");
+          }
+        }
+        assignIntervals = function(talk) {
+          var _len6, _p, _ref4, _results;
+          talk.intervals = [];
+          _ref4 = day.intervals;
+          _results = [];
+          for (_p = 0, _len6 = _ref4.length; _p < _len6; _p++) {
+            interval = _ref4[_p];
+            if (interval.startDate.getHours() === talk.startDate.getHours() && interval.startDate.getMinutes() === talk.startDate.getMinutes() || interval.startDate.getHours() === talk.finishDate.getHours() && interval.startDate.getMinutes() === talk.finishDate.getMinutes()) {
+              interval.addClass("edge");
+            }
+            if (interval.startDate >= talk.startDate && interval.finishDate <= talk.finishDate) {
+              _results.push(talk.intervals.push(interval));
+            } else {
+              _results.push(void 0);
+            }
+          }
+          return _results;
+        };
+        talkHoverStart = function(evt) {
+          var _len6, _p, _ref4;
+          idx = $(this).attr("idx");
+          day = $(this).attr("day");
+          talk = days[day].talks[idx];
+          _ref4 = talk.intervals;
+          for (_p = 0, _len6 = _ref4.length; _p < _len6; _p++) {
+            interval = _ref4[_p];
+            interval.addClass("hovered");
+          }
+          return talk.addClass("hovered");
+        };
+        talkHoverEnd = function(evt) {
+          var _len6, _p, _ref4;
+          idx = $(this).attr("idx");
+          day = $(this).attr("day");
+          talk = days[day].talks[idx];
+          _ref4 = talk.intervals;
+          for (_p = 0, _len6 = _ref4.length; _p < _len6; _p++) {
+            interval = _ref4[_p];
+            interval.removeClass("hovered");
+          }
+          return talk.removeClass("hovered");
+        };
+        _results = [];
+        for (_p = 0, _len6 = days.length; _p < _len6; _p++) {
+          day = days[_p];
+          _results.push((function() {
+            var _len7, _q, _ref4, _results1;
+            _ref4 = day.talks;
+            _results1 = [];
+            for (_q = 0, _len7 = _ref4.length; _q < _len7; _q++) {
+              talk = _ref4[_q];
+              assignIntervals(talk);
+              _results1.push(talk.hover(talkHoverStart, talkHoverEnd));
+            }
+            return _results1;
+          })());
+        }
+        return _results;
       });
-      talksArray.sort(function(a, b) {
-        var aTime, bTime;
-        aTime = a.attr("time") !== "" ? a.attr("time") : "11:59 pm";
-        bTime = b.attr("time") !== "" ? b.attr("time") : "11:59 pm";
-        return new Date("2001/01/01 " + aTime) - new Date("2001/01/01 " + bTime);
-      });
-      day.find("td").html("");
-      day.append(talksArray);
-      return day.removeClass("not-initialized");
+    };
+    buildSchedule();
+    tableDisplayed = $("section.rooms-schedule").css("display");
+    $(window).resize(function() {
+      var displayed;
+      if (tableDisplayed === "none") {
+        displayed = $("section.rooms-schedule").css("display");
+        if (displayed !== tableDisplayed) {
+          tableDisplayed = displayed;
+          console.log("buildSchedule");
+          return buildSchedule();
+        }
+      }
     });
     return $("section.program-schedule table").click(function() {
       var button, name, talksList;
