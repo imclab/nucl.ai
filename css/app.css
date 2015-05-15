@@ -2066,6 +2066,9 @@ section.thumbnails-grid.tracks-content content .thumbnails item.thumbnail h3 {
 section.thumbnails-grid.tracks-content content .thumbnails item.thumbnail h3.disabled {
   margin-top: -14%;
 }
+section.thumbnails-grid.tracks-content content .thumbnails.thumbnails-5-in-row item.thumbnail h3.disabled {
+  margin-top: -5%;
+}
 @media screen and (max-width: 432px) {
   section.thumbnails-grid.tracks-content content .big ul {
     font-size: 1em;
@@ -2197,12 +2200,22 @@ sections.page section.tickets content item.ticket-row.extras div.table {
   background-color: rgba(51, 51, 51, 0.6);
 }
 sections.page section.tickets content div.table-comments {
-  opacity: 0.75;
   margin-top: 0.5em;
   display: inline;
   float: left;
   width: 97.91666667%;
   margin: 0 1.04166667%;
+}
+sections.page section.tickets content div.table-comments h4 {
+  margin-left: 1ex;
+  font-weight: normal;
+  color: white;
+  font-size: 1.24em;
+  margin-bottom: 0;
+}
+sections.page section.tickets content div.table-comments ul {
+  opacity: 0.75;
+  font-size: 16px;
 }
 sections.page section.tickets content div.ticket-button-wrap {
   margin-top: 2em;
@@ -2577,9 +2590,6 @@ section.rooms-schedule.program-schedule content table.talks-list th.titlerow > d
 }
 section.rooms-schedule.program-schedule content table.talks-list th.titlerow h3 {
   border: none;
-}
-section.rooms-schedule.program-schedule content table.talks-list th.titlerow.laboratories {
-  display: none;
 }
 section.rooms-schedule.program-schedule content table.talks-list td {
   position: relative;
