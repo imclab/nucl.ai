@@ -8,7 +8,9 @@ section.thumbnails-grid.tracks {
             .row(10);
             margin-bottom: 1em;
             item.thumbnail {
-                &.ambient { margin-left: 11.25%; }
+                &.ambient {
+                    margin-left: 11.25%;
+                }
                 .thumbnail-title {
                     @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { font-size: 0.6em; } // can be bigger
                 }
@@ -80,7 +82,7 @@ section.thumbnails-grid.tracks-content {
         h3 a {
             color: @WHITE !important;
             text-decoration: none;
-            &:hover { color: @ORANGE !important; }
+            &:not(.wip):hover { color: @ORANGE !important; }
         }
         item.talk {
             width: 100%;
@@ -90,12 +92,24 @@ section.thumbnails-grid.tracks-content {
             }
             float: left;
             clear: both;
+            &.wip {
+                // work in progress talks
+                opacity: 0.8;
+                .thumbnails { display: none; }
+                div.description {display: none; }
+            }
         }
         .thumbnails {
             item.thumbnail { 
                 h3 { margin-top: 5px; }
                 h3.disabled { margin-top: -14%; }
             }
+            &.thumbnails-5-in-row {
+            item.thumbnail { 
+                h3.disabled { margin-top: -5%; }
+            }
+        }
+
         }
         @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { 
             .big ul {

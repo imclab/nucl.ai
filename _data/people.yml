@@ -37,7 +37,8 @@
     he has been to art school, and love to torture himself with how to bridge between the programming & art worlds.
 
 - name: Heather Stark
-  role: track
+  role: [track, speaker]
+  confirmed: true
   tracks: [analytics]
   twitter: hastark
   bio: >
@@ -54,8 +55,7 @@
     Tommy Thompson is a lecturer in computer science at the University of Derby, UK.
     He is an AI researcher focussed on machine learning applications in the areas of non-player character behaviour,
     procedural content generation and relevant benchmarking of AI through games.
-    In addition, he is the programme leader for the BSc (Hons) in Computer Games Programming and working on side-projects with his team at Table Flip Games.
-
+    
 - name: Mika Vehkala
   role: track
   tracks: [animation]
@@ -66,9 +66,10 @@
     He has specialized in both game AI and animation technology for games.
 
 - name: Noor Shaker
-  role: track
+  role: [track, speaker]
   tracks: [procedural]
   twitter: noorshak
+  confirmed: true
   bio: >
     Noor Shaker is a Postdoctoral researcher at the Center for Culture and Games at IT University
     of Copenhagen. Her research interests include player modeling, procedural content generation,
@@ -96,7 +97,6 @@
 
 - name: Petra Champandard-Pail
   role: org
-  tracks: [alternate]
   affiliation:
     position: "Conference Director & Co-Founder"
     name: AiGameDev.com
@@ -175,6 +175,14 @@
     Michael joined the Ubisoft Toronto studio in 2013 as the Tech Lead for Animation & Physics.  He brought with him his 
     passion for animation and physics programming, R&D, an innovative approach to character creation and extensive experience 
     working with animators, laying the ground work for pushing the animation tech of Ubisoft Toronto in the future.
+
+- name: Simon Clavet
+  role: speaker
+  affiliation:
+    name: Ubisoft Montreal
+    url: http://www.ubisoft.com/
+  bio: >
+    
 
 - name: Bill Grosso
   role: speaker
@@ -512,8 +520,87 @@
     url: http://www.riotgames.com/
     position: Senior Animation Engineer
   bio: >
+    An accomplished Data Scientist in applications of Cognitive Computing technology, Poulin is the Principal Partner of Patterns and Predictions. While he was recently Director of The Durkheim Project, a non-profit big data collaboration with the U.S. VA and Facebook, Inc. Where Fast Company said "This may be the most vital use of big data we’ve ever seen." He was recently Co-Director of the Dartmouth Metalearning Working Group at Dartmouth College, working on large scale machine learning. He has also lectured in artificial intelligence at the U.S. Naval War College. At Nucl.ai, he will be illustrating successful Deep Reinforcement Learning applications.
 
 - name: Michael Sellers
   role: speaker
+  confirmed: true
+  affiliation:
+    name: Indiana University
+    url: http://www.indiana.edu/
+    position: Professor of Practice
   bio: >
+    Mike Sellers is a Professor of Practice at Indiana University. He has spent more than twenty years working in the games industry and has been a founder of three successful independent game companies. He has been a Lead Designer, Creative Director, and General Manager in AAA game companies, and has extensive experience in designing and producing MMO, social, and mobile games. Past titles he has led include Meridian 59, The Sims 2, and Realm of the Mad God. He has also conducted and published original research in social artificial intelligence funded in part by DARPA. Professional interests include MMOs, virtual worlds, community formation, artificial intelligence, and emotions.
   
+- name: Simon Lucas
+  role: speaker
+  confirmed: true
+  affiliation:
+    name: University of Essex
+    url: http://www.essex.ac.uk
+    position: Head of School of Computer Science and Electronic Engineering
+  bio: >
+    Simon Lucas is a Professor of Computer Science at the University of Essex where he is currently head of the School of Computer Science and Electronic Engineering and leads the Game Intelligence Group. Simon is the founding editor-in-chief of the IEEE Transactions on Computational Intelligence and Games, and co-founded the IEEE Conference on Computational Intelligence in Games. His recent research focusses on general game AI and the development of real-time decision making algorithms. He believes we ain’t seen nothing yet when it comes to Game AI, and is very much looking forward to the advances we can expect over the next decade or two which will lead to a new era of super-immersive games.
+
+- name: Chris Poulin
+  role: speaker
+  confirmed: true
+  affiliation:
+    name: Patterns and Predictions 
+    url: http://patternsandpredictions.com/ 
+    position: Data Scientist and Principal Partner of Patterns and Predictions
+  bio: >
+    An accomplished Data Scientist in applications of Cognitive Computing technology, Poulin is the Principal Partner of Patterns and Predictions. While he was recently Director of The Durkheim Project, a non-profit big data collaboration with the U.S. VA and Facebook, Inc. Where Fast Company said "This may be the most vital use of big data we’ve ever seen." He was recently Co-Director of the Dartmouth Metalearning Working Group at Dartmouth College, working on large scale machine learning. He has also lectured in artificial intelligence at the U.S. Naval War College. At Nucl.ai, he will be illustrating successful Deep Reinforcement Learning applications.
+
+- name: Mike Preuss
+  confirmed: true
+  role: speaker
+  affiliation:
+    name: University of Muenster, Germany 
+    url: https://www.uni-muenster.de/en/ 
+    position: Research Associate 
+  bio: >
+    Mike Preuss is Research Associate at ERCIS, University of Muenster, Germany. He obtained a PhD in Evolutionary Computation from the Chair of Algorithm Engineering at TU Dortmund in 2013. His research interests focus on further developing and applying multimodal and multiobjective optimization in the context of game AI, namely for procedural content generation (PGC) and realtime strategy games (RTS). He was involved in founding the EvoGames track at Evo* and the Digital Entertainment Technologies and Arts (DETA) track at GECCO and is currently the Chair of the Games Technical Committee of the IEEE Computational Intelligence Society.
+
+# TODO: Diego
+- name: Spyridon Samothrakis
+  role: speaker
+  bio: >
+    ...
+    
+# TODO: Heather.
+- name: Milos Milosovec
+  role: speaker
+  bio: >
+    ...
+    
+# TODO: Heather.
+- name: John Hearty
+  role: speaker
+  bio: >
+    ...
+    
+# TODO: Heather.
+- name: Ivan Encinas
+  role: speaker
+  bio: >
+    ...
+
+# TODO: Cloderic.
+- name: Mieszko Zielinski
+  role: speaker
+  bio: >
+    ...
+    
+# TODO: Noor.
+- name: Hazel McKendrick
+  role: speaker
+  bio: >
+    ...
+    
+# TODO: Noor.
+- name: Mark Johnson
+  role: speaker
+  bio: >
+    ...
+
