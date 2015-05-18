@@ -16,7 +16,7 @@ $ ->
             if studio.html() == studios[idx+1].html() then studio.remove()
 
   buildSchedule = () ->
-    $("section.program-schedule").each ->
+    $("section.program-schedule grid").each ->
       schedule = $(@)
       days = []
       schedule.find("table.talks-list").length
@@ -73,7 +73,10 @@ $ ->
           day.find("td.talks-list").remove()
           for talk in day.talks
             room = talk.attr("room")
-            day.find("td." + room).append(talk)
+            if !room or room == "" or room == "all"
+              day.find("td.breaks").append(talk)
+            else
+              day.find("td." + room).append(talk)
             #set up timeline
           talksDuration = (talksFinishTime.getHours() * 60 + talksFinishTime.getMinutes()) - (talksStartTime.getHours() * 60 + talksStartTime.getMinutes())
           intervalsCount = talksDuration / timelineIntervalRange
@@ -93,11 +96,13 @@ $ ->
             interval.startDate = new Date(intervalDate)
             minutes = if intervalDate.getMinutes() >= 10 then intervalDate.getMinutes() else "0" + intervalDate.getMinutes() 
             startTime = intervalDate.getHours() + ":" + minutes
+            interval.addClass(intervalDate.getHours() + "_" + minutes)
             intervalDate.setMinutes(intervalDate.getMinutes() +  timelineIntervalRange)
             interval.finishDate = new Date(intervalDate)
             minutes = if intervalDate.getMinutes() >= 10 then intervalDate.getMinutes() else "0" + intervalDate.getMinutes() 
             finishTime = intervalDate.getHours() + ":" + minutes
             interval.find(".interval-time.start").text(startTime)
+
             if idx == intervalsCount - 1
               interval.find(".interval-time.finish").text(finishTime)
             if disableEmptyIntervals
@@ -118,6 +123,7 @@ $ ->
           day.find("td.talks-list").html("")
           day.append(day.talks)
         day.removeClass("not-initialized")
+        root.disableWip()
         
 
       if !schedule.hasClass("rooms-schedule") then return
@@ -154,9 +160,9 @@ $ ->
 
       schedule.find("table.talks-list td.timeline div.interval .ellipsis").each ->
         $(@).css("bottom",ellipsisBottom)
-      #allign top position
+      
       for day in days
-
+        #allign top position
         emptyIntervals = (talk) ->
           empty = 0
           for interval in day.intervals
@@ -188,8 +194,9 @@ $ ->
         idx = $(@).attr("idx")
         day = $(@).attr("day")
         talk = days[day].talks[idx]
-        for interval in talk.intervals
+        for interval, idx in talk.intervals
           interval.addClass("hovered")
+          if idx == talk.intervals.length - 1 then interval.addClass("hovered-edge")
         talk.addClass("hovered")
 
       talkHoverEnd = (evt) ->
@@ -198,26 +205,27 @@ $ ->
         talk = days[day].talks[idx]
         for interval in talk.intervals
           interval.removeClass("hovered")
+          interval.removeClass("hovered-edge")
         talk.removeClass("hovered")
            
 
       #set up on hover effect
       for day in days
         for talk in day.talks
+          if talk.find("a").hasClass("wip") then continue
           assignIntervals(talk)
           talk.hover talkHoverStart, talkHoverEnd
 
 
   buildSchedule()
 
-  tableDisplayed = $("section.rooms-schedule").css("display")
+  tableDisplayed = $("section grid.rooms-schedule").css("display")
   #rebuild in case switch from mobile to full view
   $(window).resize ->
     if tableDisplayed == "none"
-      displayed = $("section.rooms-schedule").css("display")
+      displayed = $("section grid.rooms-schedule").css("display")
       if displayed != tableDisplayed
         tableDisplayed = displayed
-        console.log("buildSchedule")
         buildSchedule()
 
 

@@ -1,6 +1,8 @@
 {% include page/tracks/assign.html %}
 {% include page/tracks/get_track.html %}
 
+{% assign currenttrack = item %}
+
 <section class="tracks-content tracks-text tickets">
     <grid>
         <h2>{{item.title}} (Track #{{index}})</h2>
@@ -90,22 +92,20 @@
 </section>
 
 
-{% include page/tracks/get_track.html %}
-{% assign roomsLayout = true %}
-<section class="program-schedule track-schedule rooms-schedule">
-    <grid>
+
+<section class="program-schedule track-schedule">
+    <a class="anchor" id="schedule"></a>
+    <grid class="rooms-schedule">
+        {% include page/tracks/get_track.html %}
+        {% assign roomsLayout = true %}
+        {% include page/tracks/schedule.html %}
+    </grid>
+    <grid class="list-schedule">
+        {% include page/tracks/get_track.html %}
+        {% assign roomsLayout = false %}
         {% include page/tracks/schedule.html %}
     </grid>
 </section>
-
-{% include page/tracks/get_track.html %}
-{% assign roomsLayout = false %}
-<section class="program-schedule track-schedule list-schedule">
-    <grid>
-        {% include page/tracks/schedule.html %}
-    </grid>
-</section>
-
 
 
 
@@ -151,9 +151,10 @@
         <h2> Keynotes and Presentations </h2>
         <content>
                 {% for item in items %}
-                <item class="talk">
-                    <a class="anchor" id="{{item.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | downcase}}"></a>
-                    <h3><a href="/track/{{track.id}}#{{item.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | downcase}}">{{item.title}}</a></h3>
+                {% include wip-link.html %}
+                <item class="talk {{wipClass}}">
+                    <a class="anchor" id="{{item.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | replace:'*', '' | downcase}}"></a>
+                    <h3><a class="{{wipClass}}" href="/track/{{currenttrack.id}}#{{item.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | replace:'*', ''| downcase}}">{{item.title}}</a></h3>
                     {% assign items = item.speakers %}
                     {% assign speakersSize = 0 %}
                     {% for s in item.speakers %} {% assign speakersSize = speakersSize | plus: 1 %}  {% endfor %}  {% comment %} array | size fiter gives always 0 here :| {% endcomment %}

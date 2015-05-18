@@ -1,4 +1,5 @@
 {% assign isTrackPage = false %}
+{% assign dayIdx = forloop.index %}
 {% for topic in site.data.topics %}
     {% capture pageName %}{{topic.id}}.html{% endcapture %}
     {% if page.name == pageName %} 
@@ -45,7 +46,8 @@
                     <div class="titlecell-wrap cell-content"><div class="tite-wrap"><h3 style="color: transparent;">i</h3></div></div>
                 </th>
                 {% for room in site.data.rooms %}
-                    <th class="{{room.id}} titlerow">
+                    {% if forloop.last %} {% assign last="last" %} {% else %} {% assign last="" %} {% endif %}
+                    <th class="{{room.id}} titlerow {{last}}">
                         <div class="titlecell-wrap cell-content">
                             <div class="tite-wrap"><h3>{{room.name}}</h3></div>
                         </div>
@@ -53,7 +55,7 @@
                 {% endfor %}
             </tr>
         {% endif %}
-        <tr>
+        <tr class="talk-list-row">
             <td class="talks-list">
                 {% if isTrackPage %}
                     {% capture track %}{{page.name | remove: ".html" }}{% endcapture %}
@@ -63,20 +65,38 @@
                         {% include schedule/track.html %}
                     {% endfor %}
                 {% endif %}
+
+                {% comment %} Append all breakes if no track page {% endcomment %}
+                {% if isTrackPage %} 
+                {% else %}
+                    {% for d in site.data.breaks %}
+                        {% if d.day == dayIdx %}
+                            {% for break in d.breaks %}
+                                <div class="track cell-content break table" time-start="{{break.time.start}}" time-finish="{{break.time.finish}}" room="all">
+                                    <div class="centered-cell talk-cell-wrap"><p>{{break.name}}</p></div>
+                                </div>
+                            {% endfor %}                
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
             </td>
             {% if roomsLayout %}
                 <td class="timeline">
                     <div class="interval cell-content cover-empty"></div>
                     <div class="interval pattern cell-content">
-                        <p class="interval-time start"></p>
-                        <p class="interval-time finish"></p>
-                        <p class="interval-time ellipsis">...</p>
+                        <div class="interval-inner">
+                            <p class="interval-time start"></p>
+                            <p class="interval-time finish"></p>
+                            {% if isTrackPage %} {% else %} <p class="interval-time ellipsis">...</p> {% endif %}
+                        </div>
                     </div>
                 </td>
             {% endif %}
             {% for room in site.data.rooms %}
                <td class="{{room.id}}"></td>
             {% endfor %}
+            <td class="breaks"></td>
         </tr>
     </table>
 </div>
