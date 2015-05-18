@@ -222,7 +222,7 @@
 }).call(this);
 
 (function() {
-  var enableSections, root, scroll;
+  var disableWip, enableSections, root, scroll;
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
@@ -263,6 +263,12 @@
     return root.scrollLocked = false;
   });
 
+  disableWip = function() {
+    return $("a.wip").click(function() {
+      return false;
+    });
+  };
+
   $(function() {
     if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
       $("html").addClass("ios");
@@ -277,10 +283,13 @@
         }
       }
     });
-    return enableSections();
+    enableSections();
+    return disableWip();
   });
 
   enableSections();
+
+  root.disableWip = disableWip;
 
 }).call(this);
 
@@ -435,7 +444,7 @@
       }
     });
     buildSchedule = function() {
-      return $("section.program-schedule").each(function() {
+      return $("section.program-schedule grid").each(function() {
         var assignIntervals, day, dayIdx, days, duration, ellipsisBottom, emptyIntervals, finishTime, idx, interval, intervalDate, intervalHeight, intervalsCount, lastInterval, margin, markEmpty, maxHeightDurationRatio, minutes, offset, positionTop, room, schedule, startTime, talk, talkHoverEnd, talkHoverStart, talks, talksDuration, talksFinishTime, talksStartTime, timeLineHeight, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _len6, _m, _n, _o, _p, _ref, _ref1, _ref2, _ref3, _results;
         schedule = $(this);
         days = [];
@@ -508,7 +517,11 @@
             for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
               talk = _ref2[_l];
               room = talk.attr("room");
-              day.find("td." + room).append(talk);
+              if (!room || room === "" || room === "all") {
+                day.find("td.breaks").append(talk);
+              } else {
+                day.find("td." + room).append(talk);
+              }
             }
             talksDuration = (talksFinishTime.getHours() * 60 + talksFinishTime.getMinutes()) - (talksStartTime.getHours() * 60 + talksStartTime.getMinutes());
             intervalsCount = talksDuration / timelineIntervalRange;
@@ -528,6 +541,7 @@
               interval.startDate = new Date(intervalDate);
               minutes = intervalDate.getMinutes() >= 10 ? intervalDate.getMinutes() : "0" + intervalDate.getMinutes();
               startTime = intervalDate.getHours() + ":" + minutes;
+              interval.addClass(intervalDate.getHours() + "_" + minutes);
               intervalDate.setMinutes(intervalDate.getMinutes() + timelineIntervalRange);
               interval.finishDate = new Date(intervalDate);
               minutes = intervalDate.getMinutes() >= 10 ? intervalDate.getMinutes() : "0" + intervalDate.getMinutes();
@@ -556,6 +570,7 @@
             day.append(day.talks);
           }
           day.removeClass("not-initialized");
+          root.disableWip();
         }
         if (!schedule.hasClass("rooms-schedule")) {
           return;
@@ -650,9 +665,12 @@
           day = $(this).attr("day");
           talk = days[day].talks[idx];
           _ref4 = talk.intervals;
-          for (_p = 0, _len6 = _ref4.length; _p < _len6; _p++) {
-            interval = _ref4[_p];
+          for (idx = _p = 0, _len6 = _ref4.length; _p < _len6; idx = ++_p) {
+            interval = _ref4[idx];
             interval.addClass("hovered");
+            if (idx === talk.intervals.length - 1) {
+              interval.addClass("hovered-edge");
+            }
           }
           return talk.addClass("hovered");
         };
@@ -665,6 +683,7 @@
           for (_p = 0, _len6 = _ref4.length; _p < _len6; _p++) {
             interval = _ref4[_p];
             interval.removeClass("hovered");
+            interval.removeClass("hovered-edge");
           }
           return talk.removeClass("hovered");
         };
@@ -677,6 +696,9 @@
             _results1 = [];
             for (_q = 0, _len7 = _ref4.length; _q < _len7; _q++) {
               talk = _ref4[_q];
+              if (talk.find("a").hasClass("wip")) {
+                continue;
+              }
               assignIntervals(talk);
               _results1.push(talk.hover(talkHoverStart, talkHoverEnd));
             }
@@ -687,14 +709,13 @@
       });
     };
     buildSchedule();
-    tableDisplayed = $("section.rooms-schedule").css("display");
+    tableDisplayed = $("section grid.rooms-schedule").css("display");
     $(window).resize(function() {
       var displayed;
       if (tableDisplayed === "none") {
-        displayed = $("section.rooms-schedule").css("display");
+        displayed = $("section grid.rooms-schedule").css("display");
         if (displayed !== tableDisplayed) {
           tableDisplayed = displayed;
-          console.log("buildSchedule");
           return buildSchedule();
         }
       }
@@ -818,6 +839,9 @@
     return $("h3 a, li a.scrollable, .tracks-people .track-topic a, .talks-list a").click(function() {
       var id;
       id = $(this).attr("href").split("#")[1];
+      if ($(this).hasClass("wip")) {
+        return false;
+      }
       if ($("#" + id).length > 0) {
         root.scroll(id, $("#" + id).offset().top);
         return false;
