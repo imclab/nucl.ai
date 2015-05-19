@@ -2635,11 +2635,20 @@ section.program-schedule grid.rooms-schedule content table.talks-list td.timelin
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.hovered {
   background-color: #4d4d4d;
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.hovered.hovered-edge {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.hovered.hovered-edge .interval-inner {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #4d4d4d;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.cover-empty {
@@ -2708,34 +2717,58 @@ section.program-schedule grid.rooms-schedule content table.talks-list div.track.
   background-color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.alternate .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #fedd2c;
   color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.ambient .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #00ffd8;
   color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.procedural .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #00789f;
   color: #ffffff;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.behavior .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #e31977;
   color: #222c42;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.analytics .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #ccff00;
   color: #222c42;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.decisions .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #9656d1;
   color: #ffffff;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.systems .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #5cb214;
   color: #ffffff;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.animation .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #ff0031;
   color: #333333;
 }
@@ -2743,10 +2776,16 @@ section.program-schedule grid.rooms-schedule content table.talks-list div.track.
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.day3 .talk-cell-wrap,
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.day2 .talk-cell-wrap,
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.day1 .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #e0e0e0;
   color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.break .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #4d4d4d;
   color: initial;
 }
