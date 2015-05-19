@@ -1605,6 +1605,9 @@ section.people.thumbnails-grid content item.description p.affiliation a {
 section.people.thumbnails-grid content item.description ul.talks-list {
   clear: both;
 }
+section.people content .subsection {
+  clear: both;
+}
 section.people content .subsection h3 {
   text-align: center;
 }
