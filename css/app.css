@@ -1602,8 +1602,8 @@ section.people.thumbnails-grid content item.description p.affiliation a {
     padding-bottom: 2em;
   }
 }
-section.people.thumbnails-grid content item.description ul.talks-list {
-  clear: both;
+section.people.thumbnails-grid content item.description a.wip {
+  opacity: 0.6;
 }
 section.people content .subsection {
   clear: both;
@@ -1979,17 +1979,20 @@ section.thumbnails-grid.tracks content div.thumbnails:after {
 section.thumbnails-grid.tracks content div.thumbnails:after {
   clear: both;
 }
-section.thumbnails-grid.tracks content div.thumbnails item.thumbnail.ambient {
+section.thumbnails-grid.tracks content div.thumbnails - item.thumbnail.ambient {
   margin-left: 11.25%;
 }
 @media screen and (max-width: 432px) {
-  section.thumbnails-grid.tracks content div.thumbnails item.thumbnail .thumbnail-title {
+  section.thumbnails-grid.tracks content div.thumbnails - item.thumbnail .thumbnail-title {
     font-size: 0.6em;
   }
 }
 section.thumbnails-grid.tracks.program content div.thumbnails {
   margin-top: 1em;
   margin-bottom: 2em;
+}
+section.tracks-content.tracks-text span.date-day {
+  display: none;
 }
 section.tracks-content.tracks-text content {
   display: inline;
@@ -2321,6 +2324,9 @@ sections.page section.faq content item.tickets-review .table.all-access .title {
 }
 sections.page section.faq content p.answer {
   opacity: 0.75;
+}
+section.program-schedule.track-schedule span.date-day {
+  display: none;
 }
 section.program-schedule.track-schedule content div.day-wrap {
   margin: 0;

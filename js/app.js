@@ -748,8 +748,15 @@
 }).call(this);
 
 (function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
   $(function() {
     var hoverIn, hoverOut, hoverToggle, scrollToEventbriteTickets;
+    if ($("section.tickets").length === 0) {
+      return;
+    }
     hoverIn = function() {
       return hoverToggle("in", $(this));
     };
@@ -795,18 +802,20 @@
     };
     $("div.table").hover(hoverIn, hoverOut);
     scrollToEventbriteTickets = function() {
-      return $('html, body').animate({
-        scrollTop: $("#purchase").offset().top
-      }, config.header.scrollSpeed);
+      console.log("click");
+      if ($("#purchase").length === 0) {
+        window.location = "/tickets/#purchase";
+      }
+      return root.scroll("purchase", $("#purchase").offset().top);
     };
     $(".buy-tickets-link").click(function() {
       scrollToEventbriteTickets();
       return false;
     });
-    if ($(".tickets.prices").length === 0) {
+    if ($(".tickets.prices, .tracks-content.tickets").length === 0) {
       return;
     }
-    return $(".tickets.prices .centered-cell, .conference-good .centered-cell").click(function() {
+    return $(".tickets.prices .centered-cell, .conference-good .centered-cell, .tracks-content.tickets .centered-cell").click(function() {
       if ($(this).parent().parent().attr("name") === "Access to the Main Amphitheatre") {
         window.location = "/program/overview/#main-amphitheatre";
         return false;
@@ -859,6 +868,9 @@
 (function() {
   $(function() {
     var initialize;
+    if ($("section.venu").lenght === 0) {
+      return;
+    }
     initialize = function() {
       var latLng, map, mapCanvas, mapOptions, marker;
       mapCanvas = document.getElementById('venue-map-canvas');
