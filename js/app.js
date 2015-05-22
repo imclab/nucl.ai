@@ -816,7 +816,6 @@
     };
     $("div.table").hover(hoverIn, hoverOut);
     scrollToEventbriteTickets = function() {
-      console.log("click");
       if ($("#purchase").length === 0) {
         window.location = "/tickets/#purchase";
       }
