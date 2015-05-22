@@ -459,6 +459,8 @@
         });
         for (dayIdx = _i = 0, _len = days.length; _i < _len; dayIdx = ++_i) {
           day = days[dayIdx];
+          day.addClass("not-initialized");
+          day.addClass("not-positioned");
           talks = day.find("div.track");
           day.talks = [];
           talks.each(function() {
@@ -573,6 +575,7 @@
           } else {
             day.find("td.talks-list").html("");
             day.append(day.talks);
+            day.removeClass("not-positioned");
           }
           day.removeClass("not-initialized");
           root.disableWip();
@@ -705,7 +708,8 @@
                 continue;
               }
               assignIntervals(talk);
-              _results1.push(talk.hover(talkHoverStart, talkHoverEnd));
+              talk.hover(talkHoverStart, talkHoverEnd);
+              _results1.push(day.removeClass("not-positioned"));
             }
             return _results1;
           })());
@@ -790,7 +794,17 @@
         });
       }
       if (cell.hasClass("conference")) {
-        return wrap.find(".conference .centered-cell").each(function() {
+        wrap.find(".conference .centered-cell").each(function() {
+          if (inOut === "in") {
+            $(this).addClass("hovered");
+          }
+          if (inOut === "out") {
+            return $(this).removeClass("hovered");
+          }
+        });
+      }
+      if (cell.hasClass("single-day")) {
+        return wrap.find(".single-day .centered-cell").each(function() {
           if (inOut === "in") {
             $(this).addClass("hovered");
           }

@@ -1979,11 +1979,11 @@ section.thumbnails-grid.tracks content div.thumbnails:after {
 section.thumbnails-grid.tracks content div.thumbnails:after {
   clear: both;
 }
-section.thumbnails-grid.tracks content div.thumbnails - item.thumbnail.ambient {
+section.thumbnails-grid.tracks content div.thumbnails item.thumbnail.ambient {
   margin-left: 11.25%;
 }
 @media screen and (max-width: 432px) {
-  section.thumbnails-grid.tracks content div.thumbnails - item.thumbnail .thumbnail-title {
+  section.thumbnails-grid.tracks content div.thumbnails item.thumbnail .thumbnail-title {
     font-size: 0.6em;
   }
 }
@@ -2046,6 +2046,12 @@ section.tracks-content.tracks-text div.block {
 }
 section.tracks-content.tracks-text div.block ul {
   opacity: 0.85;
+}
+section.tracks-content.tracks-text.tickets {
+  /* tickets section tweaks */
+}
+section.tracks-content.tracks-text.tickets item.ticket-row {
+  margin-left: 9.375%;
 }
 section.thumbnails-grid.tracks-content content {
   display: inline;
@@ -2124,7 +2130,7 @@ sections.page section.tickets content item.ticket-row div.name.invisible {
 sections.page section.tickets content item.ticket-row div.all-access {
   display: inline;
   float: left;
-  width: 22.91666667%;
+  width: 14.58333333%;
   margin: 0 1.04166667%;
   text-align: center;
   color: #a5cce9;
@@ -2136,7 +2142,7 @@ sections.page section.tickets content item.ticket-row div.all-access.titlerow {
 sections.page section.tickets content item.ticket-row div.conference {
   display: inline;
   float: left;
-  width: 22.91666667%;
+  width: 14.58333333%;
   margin: 0 1.04166667%;
   text-align: center;
   color: #ff9300;
@@ -2144,6 +2150,22 @@ sections.page section.tickets content item.ticket-row div.conference {
 sections.page section.tickets content item.ticket-row div.conference.titlerow {
   background-color: #e29021;
   color: #ffffff;
+}
+sections.page section.tickets content item.ticket-row div.single-day {
+  display: inline;
+  float: left;
+  width: 14.58333333%;
+  margin: 0 1.04166667%;
+  text-align: center;
+  color: #d9d9d9;
+  /* little hack to keep X tickets available in line */
+}
+sections.page section.tickets content item.ticket-row div.single-day.titlerow {
+  background-color: #333333;
+  color: #d9d9d9;
+}
+sections.page section.tickets content item.ticket-row div.single-day.table div.centered-cell p {
+  padding: 0;
 }
 sections.page section.tickets content item.ticket-row.short div.table {
   height: 86px;
@@ -2188,6 +2210,12 @@ sections.page section.tickets content item.ticket-row div.table {
 sections.page section.tickets content item.ticket-row div.table.invisible div.centered-cell {
   cursor: default;
 }
+@media screen and (max-width: 432px) {
+  sections.page section.tickets content item.ticket-row div.table.titlerow div.centered-cell p {
+    font-size: 8px;
+    padding: 1px;
+  }
+}
 sections.page section.tickets content item.ticket-row div.table div.centered-cell {
   -webkit-transition: background-color 0.3s ease-in-out;
   /* For Safari 3.1 to 6.0 */
@@ -2205,14 +2233,19 @@ sections.page section.tickets content item.ticket-row div.table div.centered-cel
     padding: 0 5px;
   }
 }
-sections.page section.tickets content item.ticket-row div.table p.date {
+sections.page section.tickets content item.ticket-row div.table p.date,
+sections.page section.tickets content item.ticket-row div.table span.comment {
   color: #808080;
 }
 @media screen and (max-width: 432px) {
-  sections.page section.tickets content item.ticket-row div.table p.date {
+  sections.page section.tickets content item.ticket-row div.table p.date,
+  sections.page section.tickets content item.ticket-row div.table span.comment {
     margin: 0;
     margin-bottom: 0.2em;
   }
+}
+sections.page section.tickets content item.ticket-row div.table span.comment {
+  font-size: 0.8em;
 }
 sections.page section.tickets content item.ticket-row.extras div.table {
   background-color: rgba(51, 51, 51, 0.6);
@@ -2538,6 +2571,9 @@ section.program-schedule content table.talks-list {
 }
 section.program-schedule content table.talks-list.not-initialized {
   display: none !important;
+}
+section.program-schedule content table.talks-list.not-positioned {
+  visibility: hidden !important;
 }
 section.program-schedule content table.talks-list.not-expanded {
   display: none;
