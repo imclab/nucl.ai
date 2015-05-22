@@ -2161,7 +2161,7 @@ sections.page section.tickets content item.ticket-row div.single-day {
   /* little hack to keep X tickets available in line */
 }
 sections.page section.tickets content item.ticket-row div.single-day.titlerow {
-  background-color: #333333;
+  background-color: #232323;
   color: #d9d9d9;
 }
 sections.page section.tickets content item.ticket-row div.single-day.table div.centered-cell p {
