@@ -1602,7 +1602,10 @@ section.people.thumbnails-grid content item.description p.affiliation a {
     padding-bottom: 2em;
   }
 }
-section.people.thumbnails-grid content item.description ul.talks-list {
+section.people.thumbnails-grid content item.description a.wip {
+  opacity: 0.6;
+}
+section.people content .subsection {
   clear: both;
 }
 section.people content .subsection {
@@ -1991,6 +1994,9 @@ section.thumbnails-grid.tracks.program content div.thumbnails {
   margin-top: 1em;
   margin-bottom: 2em;
 }
+section.tracks-content.tracks-text span.date-day {
+  display: none;
+}
 section.tracks-content.tracks-text content {
   display: inline;
   float: left;
@@ -2043,6 +2049,12 @@ section.tracks-content.tracks-text div.block {
 }
 section.tracks-content.tracks-text div.block ul {
   opacity: 0.85;
+}
+section.tracks-content.tracks-text.tickets {
+  /* tickets section tweaks */
+}
+section.tracks-content.tracks-text.tickets item.ticket-row {
+  margin-left: 9.375%;
 }
 section.thumbnails-grid.tracks-content content {
   display: inline;
@@ -2121,7 +2133,7 @@ sections.page section.tickets content item.ticket-row div.name.invisible {
 sections.page section.tickets content item.ticket-row div.all-access {
   display: inline;
   float: left;
-  width: 22.91666667%;
+  width: 14.58333333%;
   margin: 0 1.04166667%;
   text-align: center;
   color: #a5cce9;
@@ -2133,7 +2145,7 @@ sections.page section.tickets content item.ticket-row div.all-access.titlerow {
 sections.page section.tickets content item.ticket-row div.conference {
   display: inline;
   float: left;
-  width: 22.91666667%;
+  width: 14.58333333%;
   margin: 0 1.04166667%;
   text-align: center;
   color: #ff9300;
@@ -2141,6 +2153,22 @@ sections.page section.tickets content item.ticket-row div.conference {
 sections.page section.tickets content item.ticket-row div.conference.titlerow {
   background-color: #e29021;
   color: #ffffff;
+}
+sections.page section.tickets content item.ticket-row div.single-day {
+  display: inline;
+  float: left;
+  width: 14.58333333%;
+  margin: 0 1.04166667%;
+  text-align: center;
+  color: #d9d9d9;
+  /* little hack to keep X tickets available in line */
+}
+sections.page section.tickets content item.ticket-row div.single-day.titlerow {
+  background-color: #232323;
+  color: #d9d9d9;
+}
+sections.page section.tickets content item.ticket-row div.single-day.table div.centered-cell p {
+  padding: 0;
 }
 sections.page section.tickets content item.ticket-row.short div.table {
   height: 86px;
@@ -2185,6 +2213,12 @@ sections.page section.tickets content item.ticket-row div.table {
 sections.page section.tickets content item.ticket-row div.table.invisible div.centered-cell {
   cursor: default;
 }
+@media screen and (max-width: 432px) {
+  sections.page section.tickets content item.ticket-row div.table.titlerow div.centered-cell p {
+    font-size: 8px;
+    padding: 1px;
+  }
+}
 sections.page section.tickets content item.ticket-row div.table div.centered-cell {
   -webkit-transition: background-color 0.3s ease-in-out;
   /* For Safari 3.1 to 6.0 */
@@ -2202,14 +2236,19 @@ sections.page section.tickets content item.ticket-row div.table div.centered-cel
     padding: 0 5px;
   }
 }
-sections.page section.tickets content item.ticket-row div.table p.date {
+sections.page section.tickets content item.ticket-row div.table p.date,
+sections.page section.tickets content item.ticket-row div.table span.comment {
   color: #808080;
 }
 @media screen and (max-width: 432px) {
-  sections.page section.tickets content item.ticket-row div.table p.date {
+  sections.page section.tickets content item.ticket-row div.table p.date,
+  sections.page section.tickets content item.ticket-row div.table span.comment {
     margin: 0;
     margin-bottom: 0.2em;
   }
+}
+sections.page section.tickets content item.ticket-row div.table span.comment {
+  font-size: 0.8em;
 }
 sections.page section.tickets content item.ticket-row.extras div.table {
   background-color: rgba(51, 51, 51, 0.6);
@@ -2321,6 +2360,9 @@ sections.page section.faq content item.tickets-review .table.all-access .title {
 }
 sections.page section.faq content p.answer {
   opacity: 0.75;
+}
+section.program-schedule.track-schedule span.date-day {
+  display: none;
 }
 section.program-schedule.track-schedule content div.day-wrap {
   margin: 0;
@@ -2533,6 +2575,9 @@ section.program-schedule content table.talks-list {
 section.program-schedule content table.talks-list.not-initialized {
   display: none !important;
 }
+section.program-schedule content table.talks-list.not-positioned {
+  visibility: hidden !important;
+}
 section.program-schedule content table.talks-list.not-expanded {
   display: none;
 }
@@ -2635,11 +2680,20 @@ section.program-schedule grid.rooms-schedule content table.talks-list td.timelin
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.hovered {
   background-color: #4d4d4d;
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.hovered.hovered-edge {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.hovered.hovered-edge .interval-inner {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #4d4d4d;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list td.timeline div.interval.cover-empty {
@@ -2708,34 +2762,58 @@ section.program-schedule grid.rooms-schedule content table.talks-list div.track.
   background-color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.alternate .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #fedd2c;
   color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.ambient .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #00ffd8;
   color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.procedural .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #00789f;
   color: #ffffff;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.behavior .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #e31977;
   color: #222c42;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.analytics .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #ccff00;
   color: #222c42;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.decisions .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #9656d1;
   color: #ffffff;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.systems .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #5cb214;
   color: #ffffff;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.animation .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #ff0031;
   color: #333333;
 }
@@ -2743,10 +2821,16 @@ section.program-schedule grid.rooms-schedule content table.talks-list div.track.
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.day3 .talk-cell-wrap,
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.day2 .talk-cell-wrap,
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.day1 .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #e0e0e0;
   color: #333333;
 }
 section.program-schedule grid.rooms-schedule content table.talks-list div.track.hovered.track.break .talk-cell-wrap {
+  -webkit-transition: 0.5s ease-out;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s ease-out;
   background-color: #4d4d4d;
   color: initial;
 }

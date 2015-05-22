@@ -9,9 +9,9 @@ permalink: /tickets/
     <grid>
         {% comment %}
         <content>
-            {% include timers/early-birds.html %}
+            {% include features/timers/early-birds.html %}
             <div class="mobile">
-            {% include timers/early-birds.html %}
+            {% include features/timers/early-birds.html %}
             </div>
         </content>
         {% endcomment %}
@@ -51,6 +51,22 @@ permalink: /tickets/
                         <p>
                             {% if ticket.all_access %}
                                 {{ ticket.all_access }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                {% if forloop.first == false %}
+                <div class="single-day table">
+                {% else %}
+                <div class="single-day table titlerow">
+                {% endif %}
+                    <div class="centered-cell small">
+                        <p>
+                            {% if ticket.single_day %}
+                                {{ ticket.single_day }}
                             {% else %}
                                 -
                             {% endif %}
@@ -111,11 +127,25 @@ permalink: /tickets/
                     </div>
                 </div>
 
+                {% if forloop.first == false %}
+                    <div class="single-day table">
+                {% else %}
+                    <div class="single-day table titlerow">
+                {% endif %}
+                    <div class="centered-cell small">
+                        <p>{{ ticket.single_day }}</p>
+                    </div>
+                </div>
+
+
             </item>
         {% endfor %}
             <div class="table-comments">
             <p class="table-comment">
                 *** Student discounted tickets do NOT include vouchers, coupons, or dinner/lunch invitations. Indie/Unemployed discounted tickets do NOT include dinner/lunch invitations. 
+            </p>
+            <p class="table-comment">
+                **** The Single Day ticket includes the recordings of the day it was purchased for. 
             </p>
             </br>
             <p class="table-comment">

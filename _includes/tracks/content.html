@@ -1,17 +1,25 @@
-{% include page/tracks/assign.html %}
-{% include page/tracks/get_track.html %}
+{% include tracks/assign.html %}
+{% include tracks/get_track.html %}
 
 {% assign currenttrack = item %}
 
+{% for day in site.data.schedule %}
+    {% for t in day.tracks %}
+        {% if t == item.id %}
+            {% assign date = day.title %}
+            {% assign dayIdx = forloop.index %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
 <section class="tracks-content tracks-text tickets">
     <grid>
-        <h2>{{item.title}} (Track #{{index}})</h2>
+        <h2>{{item.title}} (Day #{{dayIdx}})</h2>
 
         {% assign items = site.data.tracks[item.id] %}
         <content>
             <h4>{{item.subtitle}}</h4>
-
-            <p class="intro"><span>Now in its 7th edition, <a href="/">nucl.ai</a> brings together hundreds of developers from creative industries and interactive media to resolve the biggest technical and design problems with Artificial Intelligence.  One of the event's tracks focuses specifically on</span> <b>&ldquo;{{item.title}}&rdquo;</b> <span>for an entire day.</span></p>
+            <p class="intro"><span>Now in its 7th edition, <a href="/">nucl.ai</a> brings together hundreds of developers from creative industries and interactive media to resolve the biggest technical and design problems with Artificial Intelligence.  One of the event's tracks focuses specifically on</span> <b>&ldquo;{{item.title}}&rdquo;</b> <span>for an entire day. ({{date}})</span></p>
 
         {% for ticket in site.data.track_price %}
             {% if ticket.date and ticket.date != "" %} {% capture row_class %} long {% endcapture %} {% else %} {% capture row_class %} short {% endcapture %} {% endif %}
@@ -96,14 +104,14 @@
 <section class="program-schedule track-schedule">
     <a class="anchor" id="schedule"></a>
     <grid class="rooms-schedule">
-        {% include page/tracks/get_track.html %}
+        {% include tracks/get_track.html %}
         {% assign roomsLayout = true %}
-        {% include page/tracks/schedule.html %}
+        {% include tracks/schedule.html %}
     </grid>
     <grid class="list-schedule">
-        {% include page/tracks/get_track.html %}
+        {% include tracks/get_track.html %}
         {% assign roomsLayout = false %}
-        {% include page/tracks/schedule.html %}
+        {% include tracks/schedule.html %}
     </grid>
 </section>
 
@@ -151,10 +159,15 @@
         <h2> Keynotes and Presentations </h2>
         <content>
                 {% for item in items %}
-                {% include wip-link.html %}
+
+                {% include partials/wip-link.html %}
+                {% assign escape = item.title %}
+                {% include partials/escape-link.html %}
+                {% assign escapedItemTitle = escaped %}
+
                 <item class="talk {{wipClass}}">
-                    <a class="anchor" id="{{item.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | replace:'*', '' | downcase}}"></a>
-                    <h3><a class="{{wipClass}}" href="/track/{{currenttrack.id}}#{{item.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | replace:'*', ''| downcase}}">{{item.title}}</a></h3>
+                    <a class="anchor" id="{{escapedItemTitle}}"></a>
+                    <h3><a class="{{wipClass}}" href="/track/{{currenttrack.id}}#{{escapedItemTitle}}">{{item.title}}</a></h3>
                     {% assign items = item.speakers %}
                     {% assign speakersSize = 0 %}
                     {% for s in item.speakers %} {% assign speakersSize = speakersSize | plus: 1 %}  {% endfor %}  {% comment %} array | size fiter gives always 0 here :| {% endcomment %}
@@ -174,7 +187,7 @@
                     {% assign aClass = "scrollable" %}
                         {% assign disableAll = true %}
                         <div class="thumbnails thumbnails-{{itemsInRow}}-in-row">
-                        {% include thumbnails.html %}
+                        {% include features/thumbnails/thumbnails.html %}
                     </div>
                 </item>
             {% endfor %}

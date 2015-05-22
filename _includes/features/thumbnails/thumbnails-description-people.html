@@ -11,7 +11,11 @@
 {% if lastRow %} {% capture lastRow %}last-row{% endcapture %} {% endif %}
 {% assign descModulo = descIndex | plus:1 | modulo:itemsInRow %}
 
-<item class="description {{lastRow}} animated fadeOutRight" name="{{ d.name | escape}}">
+{% assign escape = d.name %}
+{% include partials/escape-link.html %}
+{% assign escapedName = escaped %}
+
+<item class="description {{lastRow}} animated fadeOutRight" name="{{ escapedName }}">
     
     <div class="thumbnail-title 
         column-{{descModulo}}
@@ -47,7 +51,10 @@
         </p>
     {% endif %}
 
-    <p class="bio"> {{ d.bio }} </p>
+    {% assign bioSize =  d.bio | size %}
+    {% if bioSize > 5 %}
+        <p class="bio"> {{ d.bio }} </p>
+    {% endif %}
 
     {% if d.role == 'track' %}
     <p class="role">Track Chair and Co-Organizer</p>
@@ -65,8 +72,13 @@
                 {% for speaker in talk.speakers %}
                     {% if speaker == d.name %}
                         <li class="track-topic">
-                            {% include wip-link.html %}
-                            <a class="{{wipClass}}" href="/track/{{topic.id}}#{{talk.title | replace:':','-' | replace:'&','and' | escape | replace:' ','-' | replace:'*', '' | downcase}}">{{talk.title}}</a> (Presentation)
+                            {% include partials/wip-link.html %}
+
+                            {% assign escape = talk.title %}
+                            {% include partials/escape-link.html %}
+                            {% assign escapedTalkTitle = escaped %}
+
+                            <a class="{{wipClass}}" href="/track/{{topic.id}}#{{escapedTalkTitle}}">{{talk.title}}</a> (Presentation)
                         </li>
                     {% endif %}
                 {% endfor %}

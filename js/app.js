@@ -126,9 +126,14 @@
 
 (function() {
   $(function() {
-    var thumbnails;
-    if ($("#section-people").length > 0) {
-      return thumbnails = new Thumbnails("section-people", true, false);
+    if ($("#speakers-section").length > 0) {
+      new Thumbnails("speakers-section", true, false);
+    }
+    if ($("#chairs-section").length > 0) {
+      new Thumbnails("chairs-section", true, false);
+    }
+    if ($("#team-section").length > 0) {
+      return new Thumbnails("team-section", true, false);
     }
   });
 
@@ -361,7 +366,7 @@
         if (this.jQsection.length === 0) {
           return;
         }
-        if ($(window).scrollTop() + navigation.height() >= -1 + this.jQsection.offset().top && $(window).scrollTop() + navigation.height() < this.jQsection.offset().top + this.jQsection.height()) {
+        if ($(window).scrollTop() + navigation.height() >= -1 + this.jQsection.first().offset().top && $(window).scrollTop() + navigation.height() < this.jQsection.last().offset().top + this.jQsection.last().height()) {
           if (navigation.hasClass("sticky")) {
             return linkToSelect = this.jQlink;
           }
@@ -454,6 +459,8 @@
         });
         for (dayIdx = _i = 0, _len = days.length; _i < _len; dayIdx = ++_i) {
           day = days[dayIdx];
+          day.addClass("not-initialized");
+          day.addClass("not-positioned");
           talks = day.find("div.track");
           day.talks = [];
           talks.each(function() {
@@ -568,6 +575,7 @@
           } else {
             day.find("td.talks-list").html("");
             day.append(day.talks);
+            day.removeClass("not-positioned");
           }
           day.removeClass("not-initialized");
           root.disableWip();
@@ -700,7 +708,8 @@
                 continue;
               }
               assignIntervals(talk);
-              _results1.push(talk.hover(talkHoverStart, talkHoverEnd));
+              talk.hover(talkHoverStart, talkHoverEnd);
+              _results1.push(day.removeClass("not-positioned"));
             }
             return _results1;
           })());
@@ -743,8 +752,15 @@
 }).call(this);
 
 (function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
   $(function() {
     var hoverIn, hoverOut, hoverToggle, scrollToEventbriteTickets;
+    if ($("section.tickets").length === 0) {
+      return;
+    }
     hoverIn = function() {
       return hoverToggle("in", $(this));
     };
@@ -778,7 +794,17 @@
         });
       }
       if (cell.hasClass("conference")) {
-        return wrap.find(".conference .centered-cell").each(function() {
+        wrap.find(".conference .centered-cell").each(function() {
+          if (inOut === "in") {
+            $(this).addClass("hovered");
+          }
+          if (inOut === "out") {
+            return $(this).removeClass("hovered");
+          }
+        });
+      }
+      if (cell.hasClass("single-day")) {
+        return wrap.find(".single-day .centered-cell").each(function() {
           if (inOut === "in") {
             $(this).addClass("hovered");
           }
@@ -790,18 +816,19 @@
     };
     $("div.table").hover(hoverIn, hoverOut);
     scrollToEventbriteTickets = function() {
-      return $('html, body').animate({
-        scrollTop: $("#purchase").offset().top
-      }, config.header.scrollSpeed);
+      if ($("#purchase").length === 0) {
+        window.location = "/tickets/#purchase";
+      }
+      return root.scroll("purchase", $("#purchase").offset().top);
     };
     $(".buy-tickets-link").click(function() {
       scrollToEventbriteTickets();
       return false;
     });
-    if ($(".tickets.prices").length === 0) {
+    if ($(".tickets.prices, .tracks-content.tickets").length === 0) {
       return;
     }
-    return $(".tickets.prices .centered-cell, .conference-good .centered-cell").click(function() {
+    return $(".tickets.prices .centered-cell, .conference-good .centered-cell, .tracks-content.tickets .centered-cell").click(function() {
       if ($(this).parent().parent().attr("name") === "Access to the Main Amphitheatre") {
         window.location = "/program/overview/#main-amphitheatre";
         return false;
@@ -854,6 +881,9 @@
 (function() {
   $(function() {
     var initialize;
+    if ($("section.venu").lenght === 0) {
+      return;
+    }
     initialize = function() {
       var latLng, map, mapCanvas, mapOptions, marker;
       mapCanvas = document.getElementById('venue-map-canvas');
@@ -975,7 +1005,9 @@
       }
       if (window.location.hash !== "") {
         selectedId = window.location.hash.substring(1);
-        this.section.find("#thumbnail-id-" + selectedId).click();
+        if ($("#thumbnail-id-" + selectedId + ".selected").length === 0) {
+          this.section.find("#thumbnail-id-" + selectedId).click();
+        }
       }
     }
 

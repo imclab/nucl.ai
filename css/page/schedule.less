@@ -14,17 +14,19 @@
 
 .track-color(@color) {
   color: @color;
-  .marker { background-color: @color; }
+  .marker { background-color: @color; };
 }
 
 .track-hovered(@bckg_color, @font_color) {
     .talk-cell-wrap {
+        .transition(.5s ease-out);
         background-color: @bckg_color;
         color: @font_color;
     }
 }
 
 section.program-schedule.track-schedule {
+    span.date-day { display: none; }
     content {
         div.day-wrap { margin: 0; }
         table.header-table { display: none; }
@@ -142,6 +144,7 @@ section.program-schedule {
 
         table.talks-list {
             &.not-initialized { display: none !important; }
+            &.not-positioned { visibility: hidden !important; }
             &.not-expanded { display: none; }
             margin-top: 1em;
             padding-bottom: 2em;
@@ -230,9 +233,12 @@ section.program-schedule {
                         padding-top: @BORDER_SIZE;
                         &.hovered { 
                             background-color: @LIGHTEN_GREY; 
+                            .transition(.5s ease-out);
                             &.hovered-edge { 
+                                .transition(.5s ease-out);
                                 background-color: @DARK_GREY;
                                 .interval-inner {
+                                    .transition(.5s ease-out);
                                     background-color: @LIGHTEN_GREY;
                                 }
                             }
