@@ -6,7 +6,6 @@ module.exports = function (grunt) {
   // Load all Grunt tasks
   require('load-grunt-tasks')(grunt);
 
-
   /**
   * Set up configuration
   */
@@ -186,9 +185,45 @@ module.exports = function (grunt) {
         'coffee:compile',
         'jekyll:server',
       ],
+    },
+
+    /** e2e tests config */
+
+    nightwatch: {
+      phantom: {
+        standalone: false,
+        jar_path: 'bin/selenium.jar',
+          desiredCapabilities : {
+          "browserName" : "phantomjs",
+          "javascriptEnabled" : true,
+          "acceptSslCerts" : true,
+          "phantomjs.binary.path" : "node_modules/phantomjs2/lib/phantom/bin/phantomjs"
+        }
+      },
+      browser: {
+        standalone: false,
+        jar_path: 'bin/selenium.jar',
+      }
+    },
+
+    'start-selenium-server': {
+      dev: {
+        options: {
+          downloadUrl: 'https://selenium-release.storage.googleapis.com/2.42/selenium-server-standalone-2.42.2.jar',
+          downloadLocation: '/tmp',
+          serverOptions: {},
+          systemProperties: {}
+        }
+      }
+    },
+
+    'stop-selenium-server': {
+      dev: { }
     }
 
   });
+
+
 
   /**
   * Define tasks
@@ -212,6 +247,20 @@ module.exports = function (grunt) {
       'less:compile',
       'coffee:compile'
     ]);
+  });
+
+  grunt.registerTask('test', function () {
+    var browser = "phantom";
+    if (grunt.option("headless") == false) {
+      //the only way to run default browser
+      browser = "browser";
+    }
+    grunt.task.run([
+      'start-selenium-server',
+      'nightwatch:' + browser,
+      'stop-selenium-server'
+    ]);
+  
   });
 
 }

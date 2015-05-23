@@ -29,3 +29,15 @@ Execute Jekyll out of Grunt
 ```
 bundle exec jekyll (build/serve)
 ```
+
+Run Test
+```
+grunt serve # run server and watch for file changes
+# open new tab and type
+grunt test [--headless=true|false] (default=true) # execute nightwatch tests by default in headless mode (phantom.js)
+```
+
+Execute Jekyll out of Grunt
+```
+bundle exec jekyll (build/serve)
+```
