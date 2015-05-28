@@ -44,65 +44,49 @@
 
   $(function() {
     var select;
-    select = function(collection, extras, menu, clicked, inClass, outClass) {
-      var extra, selected, slideIn, _i, _j, _len, _len1, _results;
+    select = function(collection, menu, clicked, inClass, outClass) {
+      var selected, slideIn;
       slideIn = function(selected, collection, inClass, outClass) {
-        if (selected.hasClass("selected")) {
+        var exec;
+        exec = function() {
+          if (!menu.find("item[name='" + selected.attr('name') + "']").hasClass("selected")) {
+            selected.removeClass("selected");
+          }
+          if (clicked.hasClass("selected")) {
+            selected = collection.find("item[name='" + clicked.attr('name') + "']");
+            selected.removeClass(outClass);
+            selected.addClass("selected " + inClass);
+            return selected.one(animate.onAnimatedEnd, function() {
+              if (clicked.hasClass("selected")) {
+                selected.find("div.cover").removeClass("fadeIn");
+                return selected.find("div.cover").addClass("fadeOut");
+              }
+            });
+          }
+        };
+        if (selected.hasClass("selected") && !menu.find("item[name='" + selected.attr('name') + "']").hasClass("selected")) {
           selected.addClass(outClass);
           selected.removeClass(inClass);
           selected.addClass(outClass);
-          return selected.one(animate.onAnimatedEnd, function() {
-            if (!menu.find("item[name='" + selected.attr('name') + "']").hasClass("selected")) {
-              selected.removeClass("selected");
-            }
-            if (clicked.hasClass("selected")) {
-              selected = collection.find("item[name='" + clicked.attr('name') + "']");
-              selected.removeClass(outClass);
-              selected.addClass("selected " + inClass);
-              return selected.one(animate.onAnimatedEnd, function() {
-                if (clicked.hasClass("selected")) {
-                  selected.find("div.cover").removeClass("fadeIn");
-                  return selected.find("div.cover").addClass("fadeOut");
-                }
-              });
-            }
-          });
+          return selected.one(animate.onAnimatedEnd, exec);
         }
       };
       selected = collection.find("item.selected");
-      for (_i = 0, _len = extras.length; _i < _len; _i++) {
-        extra = extras[_i];
-        extra.selected = extra.find("item.selected");
-      }
       if (selected.find("div.cover").hasClass("fadeOut")) {
         selected.find("div.cover").removeClass("fadeOut");
         selected.find("div.cover").addClass("fadeIn");
         return selected.one(animate.onAnimatedEnd, function() {
-          var _j, _len1, _results;
-          slideIn(selected, collection, slideInClass, slideOutClass);
-          _results = [];
-          for (_j = 0, _len1 = extras.length; _j < _len1; _j++) {
-            extra = extras[_j];
-            _results.push(slideIn(extra.selected, extra, descriptionInClass, descriptionOutClass));
-          }
-          return _results;
+          return slideIn(selected, collection, slideInClass, slideOutClass);
         });
       } else {
-        slideIn(selected, collection, slideInClass, slideOutClass);
-        _results = [];
-        for (_j = 0, _len1 = extras.length; _j < _len1; _j++) {
-          extra = extras[_j];
-          _results.push(slideIn(extra.selected, extra, descriptionInClass, descriptionOutClass));
-        }
-        return _results;
+        return slideIn(selected, collection, slideInClass, slideOutClass);
       }
     };
     return $("gallery").each(function() {
-      var descriptions, galery, menu, slides;
+      var galery, menu, slides;
       galery = $(this);
       menu = galery.find("menu");
       slides = galery.find("slides");
-      descriptions = galery.find("descriptions");
       return menu.find("item").click(function() {
         var clicked, selected;
         clicked = $(this);
@@ -112,7 +96,7 @@
         }
         selected.removeClass("selected");
         clicked.addClass("selected");
-        return select(slides, [descriptions], menu, clicked, slideInClass, slideOutClass);
+        return select(slides, menu, clicked, slideInClass, slideOutClass);
       });
     });
   });

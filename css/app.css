@@ -217,6 +217,15 @@ section.sponsors content item .logo-wrap div.logo-center a {
   vertical-align: middle;
   text-align: center;
 }
+sup,
+sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+sub {
+  top: 0.4em;
+}
 footer {
   display: block;
   background-color: #262626;
@@ -438,12 +447,17 @@ section.splash-screen splash content titles .left {
   }
 }
 section.splash-screen splash content titles .left h1 {
+  transition: all 0.5s;
   font-size: 6.5em;
   opacity: 0.85;
 }
-section.splash-screen splash content titles .left h1 a {
+section.splash-screen splash content titles .left h1 a,
+section.splash-screen splash content titles .left h1 a:hover {
   text-decoration: none;
   color: white;
+}
+section.splash-screen splash content titles .left h1:hover {
+  opacity: 1.0;
 }
 @media screen and (max-width: 432px) {
   section.splash-screen splash content titles .left h1 {
@@ -1074,6 +1088,13 @@ section grid content {
   display: block;
   overflow: hidden;
 }
+section grid content div.block {
+  float: left;
+  width: 50%;
+}
+section grid content div.block ul {
+  opacity: 0.85;
+}
 section:last-child {
   min-height: calc(100vh - 145px  - 60px);
 }
@@ -1273,6 +1294,12 @@ timer-dashboard clock .unit {
   margin-top: 50px;
   line-height: 25px;
 }
+gallery img {
+  display: block;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
 gallery item {
   -webkit-transition: border 0.5s ease-in-out;
   /* For Safari 3.1 to 6.0 */
@@ -1284,7 +1311,9 @@ gallery item.animated {
   /* Chrome, Safari, Opera */
   animation-duration: 0.5s;
 }
-gallery item div {
+gallery item div,
+gallery item img {
+  display: block;
   height: 100%;
   width: 100%;
   background-size: cover;
@@ -1293,7 +1322,8 @@ gallery item div {
   /* For Safari 3.1 to 6.0 */
   transition: opacity 0.5s ease-in-out;
 }
-gallery item div.cover {
+gallery item div.cover,
+gallery item img.cover {
   float: left;
 }
 gallery menu {
@@ -2039,13 +2069,6 @@ section.tracks-content.tracks-text content .credit {
   margin-bottom: 1.5em;
   text-align: right;
   color: #808080;
-}
-section.tracks-content.tracks-text div.block {
-  float: left;
-  width: 50%;
-}
-section.tracks-content.tracks-text div.block ul {
-  opacity: 0.85;
 }
 section.tracks-content.tracks-text.tickets {
   /* tickets section tweaks */
@@ -2866,4 +2889,21 @@ section.program-schedule grid.rooms-schedule content table.talks-list tr.talk-li
   .rooms-schedule {
     display: none;
   }
+}
+sections.page section.press content {
+  display: inline;
+  float: left;
+  width: 97.91666667%;
+  margin: 0 1.04166667%;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.press content a#logo-link {
+    display: none;
+  }
+}
+sections.page section.press content h3 {
+  margin-bottom: 0;
+}
+sections.page section.press content p {
+  opacity: 0.85;
 }
