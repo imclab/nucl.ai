@@ -935,7 +935,7 @@ sections section.navigation grid content div.item:not(.selected) .icons-wrap:hov
   opacity: 1;
 }
 sections section.navigation grid content item {
-  width: 18%;
+  width: 17%;
   display: block;
   float: left;
   text-align: center;
@@ -943,7 +943,7 @@ sections section.navigation grid content item {
   /** drop down menu */
 }
 sections section.navigation grid content item.nav-logo {
-  width: 10%;
+  width: 15%;
   line-height: 1px;
 }
 sections section.navigation grid content item div.icons-wrap {
