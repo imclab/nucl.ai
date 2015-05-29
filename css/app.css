@@ -1326,6 +1326,9 @@ gallery item div.cover,
 gallery item img.cover {
   float: left;
 }
+gallery item img {
+  display: none;
+}
 gallery menu {
   padding: 0;
   margin: 0;
@@ -1379,6 +1382,10 @@ gallery descriptions item {
 gallery slides item.selected,
 gallery descriptions item.selected {
   display: block;
+}
+gallery slides item.selected img,
+gallery descriptions item.selected img {
+  display: initial;
 }
 @media screen and (max-width: 432px) {
   gallery slides item,
@@ -1871,6 +1878,26 @@ section.news-feed content tr:last-child > td {
   section.news-feed content td {
     font-size: 0.7em;
   }
+}
+section.stream {
+  min-height: 0px;
+}
+section.stream content {
+  text-align: center;
+}
+section.stream content a {
+  cursor: pointer;
+}
+section.stream content a span.button {
+  font-size: 3em;
+}
+@media screen and (max-width: 432px) {
+  section.stream content a span.button {
+    font-size: 1.25em;
+  }
+}
+section.stream content a span.announcement {
+  display: none;
 }
 sections.page section.contact content {
   display: inline;
@@ -2906,4 +2933,18 @@ sections.page section.press content h3 {
 }
 sections.page section.press content p {
   opacity: 0.85;
+}
+sections.page section.press#speakers .block {
+  width: 36%;
+  padding: 0 0 0 14%;
+}
+sections.page section.attend content p {
+  opacity: 0.85;
+}
+sections.page section.attend content > p {
+  text-align: justify;
+}
+sections.page section.attend content .block {
+  width: 44.5%;
+  padding: 0 1.0% 0 4.0%;
 }

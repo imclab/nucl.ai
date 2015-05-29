@@ -44,65 +44,49 @@
 
   $(function() {
     var select;
-    select = function(collection, extras, menu, clicked, inClass, outClass) {
-      var extra, selected, slideIn, _i, _j, _len, _len1, _results;
+    select = function(collection, menu, clicked, inClass, outClass) {
+      var selected, slideIn;
       slideIn = function(selected, collection, inClass, outClass) {
-        if (selected.hasClass("selected")) {
+        var exec;
+        exec = function() {
+          if (!menu.find("item[name='" + selected.attr('name') + "']").hasClass("selected")) {
+            selected.removeClass("selected");
+          }
+          if (clicked.hasClass("selected")) {
+            selected = collection.find("item[name='" + clicked.attr('name') + "']");
+            selected.removeClass(outClass);
+            selected.addClass("selected " + inClass);
+            return selected.one(animate.onAnimatedEnd, function() {
+              if (clicked.hasClass("selected")) {
+                selected.find("div.cover").removeClass("fadeIn");
+                return selected.find("div.cover").addClass("fadeOut");
+              }
+            });
+          }
+        };
+        if (selected.hasClass("selected") && !menu.find("item[name='" + selected.attr('name') + "']").hasClass("selected")) {
           selected.addClass(outClass);
           selected.removeClass(inClass);
           selected.addClass(outClass);
-          return selected.one(animate.onAnimatedEnd, function() {
-            if (!menu.find("item[name='" + selected.attr('name') + "']").hasClass("selected")) {
-              selected.removeClass("selected");
-            }
-            if (clicked.hasClass("selected")) {
-              selected = collection.find("item[name='" + clicked.attr('name') + "']");
-              selected.removeClass(outClass);
-              selected.addClass("selected " + inClass);
-              return selected.one(animate.onAnimatedEnd, function() {
-                if (clicked.hasClass("selected")) {
-                  selected.find("div.cover").removeClass("fadeIn");
-                  return selected.find("div.cover").addClass("fadeOut");
-                }
-              });
-            }
-          });
+          return selected.one(animate.onAnimatedEnd, exec);
         }
       };
       selected = collection.find("item.selected");
-      for (_i = 0, _len = extras.length; _i < _len; _i++) {
-        extra = extras[_i];
-        extra.selected = extra.find("item.selected");
-      }
       if (selected.find("div.cover").hasClass("fadeOut")) {
         selected.find("div.cover").removeClass("fadeOut");
         selected.find("div.cover").addClass("fadeIn");
         return selected.one(animate.onAnimatedEnd, function() {
-          var _j, _len1, _results;
-          slideIn(selected, collection, slideInClass, slideOutClass);
-          _results = [];
-          for (_j = 0, _len1 = extras.length; _j < _len1; _j++) {
-            extra = extras[_j];
-            _results.push(slideIn(extra.selected, extra, descriptionInClass, descriptionOutClass));
-          }
-          return _results;
+          return slideIn(selected, collection, slideInClass, slideOutClass);
         });
       } else {
-        slideIn(selected, collection, slideInClass, slideOutClass);
-        _results = [];
-        for (_j = 0, _len1 = extras.length; _j < _len1; _j++) {
-          extra = extras[_j];
-          _results.push(slideIn(extra.selected, extra, descriptionInClass, descriptionOutClass));
-        }
-        return _results;
+        return slideIn(selected, collection, slideInClass, slideOutClass);
       }
     };
     return $("gallery").each(function() {
-      var descriptions, galery, menu, slides;
+      var galery, menu, slides;
       galery = $(this);
       menu = galery.find("menu");
       slides = galery.find("slides");
-      descriptions = galery.find("descriptions");
       return menu.find("item").click(function() {
         var clicked, selected;
         clicked = $(this);
@@ -112,7 +96,7 @@
         }
         selected.removeClass("selected");
         clicked.addClass("selected");
-        return select(slides, [descriptions], menu, clicked, slideInClass, slideOutClass);
+        return select(slides, menu, clicked, slideInClass, slideOutClass);
       });
     });
   });
@@ -153,6 +137,19 @@
       return setSponsorsSize();
     });
     return setSponsorsSize();
+  });
+
+}).call(this);
+
+(function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  $(function() {
+    if ($("section.stream landing-stream").length === 0) {
+
+    }
   });
 
 }).call(this);
@@ -757,6 +754,19 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   $(function() {
+    if ($("sections.page section.stream").length === 0) {
+
+    }
+  });
+
+}).call(this);
+
+(function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  $(function() {
     var hoverIn, hoverOut, hoverToggle, scrollToEventbriteTickets;
     if ($("section.tickets").length === 0) {
       return;
@@ -1267,7 +1277,7 @@
   };
 
   $(function() {
-    var getScale, update;
+    var getScale, timerName, update;
     getScale = function(clock) {
       if (clock.hasClass("days")) {
         return 31;
@@ -1288,15 +1298,28 @@
       }
       return _results;
     };
+    timerName = null;
     return $("timer-dashboard").each(function() {
       var clocks, options, timer;
       timer = $(this);
       clocks = [];
+      if ($(".single-timer").length > 0 && timerName !== null && timerName !== timer.attr("name")) {
+        timer.remove();
+        return;
+      }
+      if (timer.attr("off") && (new Date(timer.attr("off")) < new Date())) {
+        timer.remove();
+        return;
+      }
+      timerName = timer.attr("name");
       options = timer.parent().hasClass("mobile") ? $.extend({}, defaultOptions, mobileOptions) : defaultOptions;
       timer.find("clock").each(function() {
         return clocks.push($(this).easyPieChart(options));
       });
       return timer.countdown(timer.attr("count-to"), function(event) {
+        if (event.type === "finish" && timer.attr("on-finish")) {
+          eval(timer.attr("on-finish"));
+        }
         if (event.strftime('%S') !== timer.find(".seconds").find(".value").html()) {
           timer.find(".days").find(".value").html(event.strftime('%D'));
           timer.find(".hours").find(".value").html(event.strftime('%H'));
