@@ -142,6 +142,19 @@
 }).call(this);
 
 (function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  $(function() {
+    if ($("section.stream landing-stream").length === 0) {
+
+    }
+  });
+
+}).call(this);
+
+(function() {
   var LONG_INTERAL, SHORT_INTERVAL, effectIn, effectOut;
 
   effectIn = "flipInX";
@@ -741,6 +754,19 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   $(function() {
+    if ($("sections.page section.stream").length === 0) {
+
+    }
+  });
+
+}).call(this);
+
+(function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  $(function() {
     var hoverIn, hoverOut, hoverToggle, scrollToEventbriteTickets;
     if ($("section.tickets").length === 0) {
       return;
@@ -1251,7 +1277,7 @@
   };
 
   $(function() {
-    var getScale, update;
+    var getScale, timerName, update;
     getScale = function(clock) {
       if (clock.hasClass("days")) {
         return 31;
@@ -1272,15 +1298,28 @@
       }
       return _results;
     };
+    timerName = null;
     return $("timer-dashboard").each(function() {
       var clocks, options, timer;
       timer = $(this);
       clocks = [];
+      if ($(".single-timer").length > 0 && timerName !== null && timerName !== timer.attr("name")) {
+        timer.remove();
+        return;
+      }
+      if (timer.attr("off") && (new Date(timer.attr("off")) < new Date())) {
+        timer.remove();
+        return;
+      }
+      timerName = timer.attr("name");
       options = timer.parent().hasClass("mobile") ? $.extend({}, defaultOptions, mobileOptions) : defaultOptions;
       timer.find("clock").each(function() {
         return clocks.push($(this).easyPieChart(options));
       });
       return timer.countdown(timer.attr("count-to"), function(event) {
+        if (event.type === "finish" && timer.attr("on-finish")) {
+          eval(timer.attr("on-finish"));
+        }
         if (event.strftime('%S') !== timer.find(".seconds").find(".value").html()) {
           timer.find(".days").find(".value").html(event.strftime('%D'));
           timer.find(".hours").find(".value").html(event.strftime('%H'));
