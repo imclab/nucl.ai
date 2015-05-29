@@ -2948,6 +2948,57 @@ sections.page section.press#speakers .block {
   width: 36%;
   padding: 0 0 0 14%;
 }
+sections.page section.attend.our-audience img {
+  float: right;
+  margin: 40px 0 0 30px;
+  width: 320px;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.our-audience img {
+    margin: 0;
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block {
+    width: 100%;
+  }
+}
+sections.page section.attend.why-attend .block.img {
+  background-position: center;
+}
+sections.page section.attend.why-attend .block.img.long {
+  height: 244px;
+}
+sections.page section.attend.why-attend .block.img.short {
+  height: 228px;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block.img.long,
+  sections.page section.attend.why-attend .block.img.short {
+    height: 8em;
+  }
+}
+sections.page section.attend.why-attend .block.img.mobile {
+  display: none;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block.img.mobile {
+    display: block;
+  }
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block.img.full {
+    display: none;
+  }
+}
+sections.page section.attend content {
+  display: inline;
+  float: left;
+  width: 97.91666667%;
+  margin: 0 1.04166667%;
+}
 sections.page section.attend content p {
   opacity: 0.85;
 }
