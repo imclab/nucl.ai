@@ -147,8 +147,29 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   $(function() {
-    if ($("section.stream landing-stream").length === 0) {
-
+    var check, data, live, liveNow, section;
+    section = $("section.stream.landing-stream");
+    if (section.length === 0) {
+      return;
+    }
+    data = section.find("div.stream-data");
+    live = section.find(".announcement.live");
+    check = section.find(".announcement.check");
+    liveNow = false;
+    data.find("span.day").each(function() {
+      var finish, start, _ref;
+      start = new Date($(this).attr("date-start"));
+      finish = new Date($(this).attr("date-finish"));
+      if ((start <= (_ref = new Date()) && _ref <= finish)) {
+        return liveNow = true;
+      }
+    });
+    if (liveNow) {
+      live.addClass("block");
+      return section.addClass("live");
+    } else {
+      check.addClass("block");
+      return section.addClass("check");
     }
   });
 

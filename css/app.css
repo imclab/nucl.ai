@@ -935,7 +935,7 @@ sections section.navigation grid content div.item:not(.selected) .icons-wrap:hov
   opacity: 1;
 }
 sections section.navigation grid content item {
-  width: 15%;
+  width: 18%;
   display: block;
   float: left;
   text-align: center;
@@ -1898,6 +1898,16 @@ section.stream content a span.button {
 }
 section.stream content a span.announcement {
   display: none;
+}
+section.stream content a span.announcement.block {
+  display: block;
+  font-size: 1.5em;
+  padding-top: 1em;
+}
+@media screen and (max-width: 432px) {
+  section.stream content a span.announcement.block {
+    font-size: 0.8em;
+  }
 }
 sections.page section.contact content {
   display: inline;
