@@ -35,6 +35,16 @@ section.program-schedule.track-schedule {
             padding: 0;
         }
     }
+    .ical-button {
+        text-align: center;
+        margin-bottom: 0;
+        @media screen and (min-width: (@SMARTPHONE_MAX_PORTRAIT + 1px)) {  
+            margin-top: 1em; 
+        }
+        @media screen and (max-width: (@SMARTPHONE_MAX_PORTRAIT )) {  
+            font-size: 0.8em;
+        }
+    }
 }
 
 section.program-schedule {
@@ -335,4 +345,15 @@ section.program-schedule {
 }
 .rooms-schedule{
     @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { display: none; }
+}
+
+.ical-button {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 1em;
+    width: 100%;
+    font-size: 1.5em; 
+    @media screen and (max-width: (@SMARTPHONE_MAX_PORTRAIT )) {  
+        font-size: 0.7em;
+    }
 }
