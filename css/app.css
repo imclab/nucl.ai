@@ -2431,6 +2431,20 @@ section.program-schedule.track-schedule content table.talks-list {
   margin: 0;
   padding: 0;
 }
+section.program-schedule.track-schedule .ical-button {
+  text-align: center;
+  margin-bottom: 0;
+}
+@media screen and (min-width: 433px) {
+  section.program-schedule.track-schedule .ical-button {
+    margin-top: 1em;
+  }
+}
+@media screen and (max-width: 432px) {
+  section.program-schedule.track-schedule .ical-button {
+    font-size: 0.8em;
+  }
+}
 section.program-schedule content {
   display: inline;
   float: left;
@@ -2925,6 +2939,18 @@ section.program-schedule grid.rooms-schedule content table.talks-list tr.talk-li
 @media screen and (max-width: 432px) {
   .rooms-schedule {
     display: none;
+  }
+}
+.ical-button {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 1em;
+  width: 100%;
+  font-size: 1.5em;
+}
+@media screen and (max-width: 432px) {
+  .ical-button {
+    font-size: 0.7em;
   }
 }
 sections.page section.press content {

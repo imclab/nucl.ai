@@ -104,6 +104,57 @@
 }).call(this);
 
 (function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  $(function() {
+    return $(".ical-button").each(function() {
+      var dateStr, day, days, filename, ical, icalButton, source, _i, _len;
+      icalButton = $(this);
+      ical = ics();
+      source = icalButton.attr("source") ? icalButton.attr("source") : "";
+      days = [];
+      $(".list-schedule " + source + " table.talks-list").each(function() {
+        days.push($(this));
+        return console.log("ss");
+      });
+      for (_i = 0, _len = days.length; _i < _len; _i++) {
+        day = days[_i];
+        dateStr = day.attr("date");
+        filename = dateStr.replace("/", "-");
+        day.find(".track").each(function() {
+          var begin, description, end, location, speakers, subject;
+          begin = new Date(dateStr + " " + $(this).attr("time-start"));
+          end = new Date(dateStr + " " + $(this).attr("time-finish"));
+          location = $(this).find("p.title span.room-name").text().trim().replace(/\s+/g, ' ');
+          speakers = $(this).find("p.speakers").text().trim().replace(/\s+/g, ' ');
+          subject = $(this).find("p.title span.title").text().trim().replace(/\s+/g, ' ');
+          if (speakers) {
+            subject = subject + " [" + speakers + "]";
+          }
+          description = window.location.host + $(this).find("p.title a").attr("href");
+          if ($(this).find("p.title a").hasClass("wip")) {
+            description = "";
+          }
+          if ($(this).hasClass("break")) {
+            subject = $(this).text().trim().replace(/\s+/g, ' ');
+            description = "";
+            location = "";
+          }
+          return ical.addEvent(subject, description, location, begin, end);
+        });
+      }
+      return icalButton.click(function() {
+        ical.download(icalButton.attr("filename"));
+        return false;
+      });
+    });
+  });
+
+}).call(this);
+
+(function() {
 
 
 }).call(this);
@@ -471,7 +522,6 @@
         var assignIntervals, day, dayIdx, days, duration, ellipsisBottom, emptyIntervals, finishTime, idx, interval, intervalDate, intervalHeight, intervalsCount, lastInterval, margin, markEmpty, maxHeightDurationRatio, minutes, offset, positionTop, room, schedule, startTime, talk, talkHoverEnd, talkHoverStart, talks, talksDuration, talksFinishTime, talksStartTime, timeLineHeight, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _len6, _m, _n, _o, _p, _ref, _ref1, _ref2, _ref3, _results;
         schedule = $(this);
         days = [];
-        schedule.find("table.talks-list").length;
         schedule.find("table.talks-list").each(function() {
           return days.push($(this));
         });
@@ -491,8 +541,8 @@
             talk = _ref[_j];
             startTime = talk.attr("time-start");
             finishTime = talk.attr("time-finish");
-            talk.startDate = new Date("2001/01/01 " + startTime);
-            talk.finishDate = new Date("2001/01/01 " + finishTime);
+            talk.startDate = new Date(day.attr("date") + "  " + startTime);
+            talk.finishDate = new Date(day.attr("date") + "  " + finishTime);
           }
           day.talks.sort(function(a, b) {
             if (talksStartTime === null || talksStartTime > a.startDate) {
@@ -940,16 +990,6 @@
 }).call(this);
 
 (function() {
-  $(window).load(function() {
-    var backgroundImage;
-    backgroundImage = assets.audienceGif;
-    return $("<img />").attr('src', backgroundImage).load(function() {
-      if ($("div.splash-screen-wrap.audience-gif").length > 0) {
-        return $("div.splash-screen-wrap").css('background-image', 'url("' + backgroundImage + '")');
-      }
-    });
-  });
-
   $(function() {
     $('logo-wrap').addClass("rotated");
     $('logo-wrap').removeClass("opacity0");
