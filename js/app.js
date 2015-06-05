@@ -116,8 +116,7 @@
       source = icalButton.attr("source") ? icalButton.attr("source") : "";
       days = [];
       $(".list-schedule " + source + " table.talks-list").each(function() {
-        days.push($(this));
-        return console.log("ss");
+        return days.push($(this));
       });
       for (_i = 0, _len = days.length; _i < _len; _i++) {
         day = days[_i];
