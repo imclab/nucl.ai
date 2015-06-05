@@ -532,7 +532,9 @@
           talks = day.find("div.track");
           day.talks = [];
           talks.each(function() {
-            return day.talks.push($(this));
+            if ($(this).attr("time-start") && $(this).attr("time-finish")) {
+              return day.talks.push($(this));
+            }
           });
           talksStartTime = null;
           talksFinishTime = null;
