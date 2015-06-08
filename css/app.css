@@ -935,7 +935,7 @@ sections section.navigation grid content div.item:not(.selected) .icons-wrap:hov
   opacity: 1;
 }
 sections section.navigation grid content item {
-  width: 15%;
+  width: 17%;
   display: block;
   float: left;
   text-align: center;
@@ -943,7 +943,7 @@ sections section.navigation grid content item {
   /** drop down menu */
 }
 sections section.navigation grid content item.nav-logo {
-  width: 10%;
+  width: 15%;
   line-height: 1px;
 }
 sections section.navigation grid content item div.icons-wrap {
@@ -1899,6 +1899,16 @@ section.stream content a span.button {
 section.stream content a span.announcement {
   display: none;
 }
+section.stream content a span.announcement.block {
+  display: block;
+  font-size: 1.5em;
+  padding-top: 1em;
+}
+@media screen and (max-width: 432px) {
+  section.stream content a span.announcement.block {
+    font-size: 0.8em;
+  }
+}
 sections.page section.contact content {
   display: inline;
   float: left;
@@ -2421,6 +2431,20 @@ section.program-schedule.track-schedule content table.talks-list {
   margin: 0;
   padding: 0;
 }
+section.program-schedule.track-schedule .ical-button {
+  text-align: center;
+  margin-bottom: 0;
+}
+@media screen and (min-width: 433px) {
+  section.program-schedule.track-schedule .ical-button {
+    margin-top: 1em;
+  }
+}
+@media screen and (max-width: 432px) {
+  section.program-schedule.track-schedule .ical-button {
+    font-size: 0.8em;
+  }
+}
 section.program-schedule content {
   display: inline;
   float: left;
@@ -2917,6 +2941,18 @@ section.program-schedule grid.rooms-schedule content table.talks-list tr.talk-li
     display: none;
   }
 }
+.ical-button {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 1em;
+  width: 100%;
+  font-size: 1.5em;
+}
+@media screen and (max-width: 432px) {
+  .ical-button {
+    font-size: 0.7em;
+  }
+}
 sections.page section.press content {
   display: inline;
   float: left;
@@ -2937,6 +2973,57 @@ sections.page section.press content p {
 sections.page section.press#speakers .block {
   width: 36%;
   padding: 0 0 0 14%;
+}
+sections.page section.attend.our-audience img {
+  float: right;
+  margin: 40px 0 0 30px;
+  width: 320px;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.our-audience img {
+    margin: 0;
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block {
+    width: 100%;
+  }
+}
+sections.page section.attend.why-attend .block.img {
+  background-position: center;
+}
+sections.page section.attend.why-attend .block.img.long {
+  height: 244px;
+}
+sections.page section.attend.why-attend .block.img.short {
+  height: 228px;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block.img.long,
+  sections.page section.attend.why-attend .block.img.short {
+    height: 8em;
+  }
+}
+sections.page section.attend.why-attend .block.img.mobile {
+  display: none;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block.img.mobile {
+    display: block;
+  }
+}
+@media screen and (max-width: 432px) {
+  sections.page section.attend.why-attend .block.img.full {
+    display: none;
+  }
+}
+sections.page section.attend content {
+  display: inline;
+  float: left;
+  width: 97.91666667%;
+  margin: 0 1.04166667%;
 }
 sections.page section.attend content p {
   opacity: 0.85;
