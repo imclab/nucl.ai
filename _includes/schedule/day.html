@@ -6,7 +6,7 @@
         {% assign isTrackPage = true %}
     {% endif %}
 {% endfor %}
-<div class="day-wrap" name="{{day.title}}">
+<div id="day-idx-{{forloop.index}}" class="day-wrap" name="{{day.title}}">
     <table class="clickable header-table"> 
         <tr>
             <td>
@@ -37,7 +37,7 @@
             </td>
         </tr>
     </table>
-    <table class="talks-list not-initialized animated zoomIn expanded" name="{{day.title}}" border="0" cellpadding="0" cellspacing="0">
+    <table class="talks-list not-initialized animated zoomIn expanded" name="{{day.title}}" date="{{day.date}}" border="0" cellpadding="0" cellspacing="0">
         {% comment %} Get all talks per day {% endcomment %}
         {% if roomsLayout %}
             <tr> 
