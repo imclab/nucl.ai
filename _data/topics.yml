@@ -1,9 +1,9 @@
 - id: animation
   title: "Character Animation Technology"
   subtitle: >
-    Join experts from Ubisoft, Riot Games and Pixar for a masterclass on state-of-the-art
-    techniques from runtime IK rigs to gameplay integration, and forward looking technology
-    to break down the finite-state machine.
+    Join experts from Ubisoft, Riot Games and Pixar for a day-long course on state-of-the-art
+    techniques from runtime IK rigs to gameplay integration, and forward looking technology to
+    break down the finite-state machine.
   description: >
     Portraying characters is one of the most challenging aspects of building an
     engaging 3D world.  While many low-level aspects of character animation technology
@@ -29,12 +29,29 @@
   credit:
     title: Marvin Rig
     url: http://aigamedev.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 27
 
 - id: decisions
   title: "Real-time Decisions"
   subtitle: >
     Join experts from Microsoft Studios, Creative Assembly, Lionhead and the Universities
-    of Essex and Dortmund for a masterclass on state-of-the-art techniques in decision making
+    of Essex and Dortmund for a day-long course on state-of-the-art techniques in decision making
     from Monte-Carlo Tree Search to Deep Reinforcement Learning or neural networks, why and
     how they can be applied in interactive applications.
   description: >
@@ -54,18 +71,36 @@
     creating intelligent runtime agents for your games, simulations or applications,
     this track will help you make the most of recent advances.</p>
   keywords:
+    - utility systems
     - monte-carlo tree search
     - deep neural networks
     - tactics and strategy
   credit:
     title: The AI Sandbox
     url: http://aisandbox.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 27
 
 - id: behavior
   title: "Agent Behavior"
   subtitle: >
-    Join experts from Square Enix, Epic, Bohemia Interactive Simulations, CCP Games for a
-    masterclass on state-of-the-art techniques in behavior and control, including coordination
+    Join experts from Square Enix, Epic, Bohemia Interactive Simulations, CCP Games for a day-long
+    course on state-of-the-art techniques in behavior and control, including coordination
     of multiple agents, reuse of logic and command hierarchies.  Learn how to integrate
     Behavior Trees and other techniques into your games and simulations, for results that are
     easy to author and control.
@@ -91,6 +126,23 @@
   credit:
     title: The Sims 4
     url: http://www.thesims.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 26
 
 - id: procedural
   title: "Procedural Content Generation"
@@ -124,6 +176,23 @@
   credit:
     title: "Sir, You're Being Hunted"
     url: http://www.big-robot.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 26
 
 - id: alternate
   title: "Virtual / Augmented Reality"
@@ -155,12 +224,29 @@
   credit:
     title: Project Trains
     url: http://project-trains.tumblr.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 27
 
 - id: ambient
   title: "Crowds and Ambient Life"
   subtitle: >
     Join experts from Pixar Animation Studios, Ubisoft Montreal, MPC, Unity Technologies
-    and the INRIA labs for a masterclass on industry-leading applications of locomotion
+    and the INRIA labs for a day-long course on industry-leading applications of locomotion
     and avoidance algorithms in groups, whether in constrained environments or crowds in
     open spaces.  Find out about the techniques used in real-time games and simulations
     for visual effects.
@@ -189,12 +275,29 @@
   credit:
     title: Golaem Crowd
     url: http://golaem.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 27
 
 - id: analytics
   title: "Advanced Analytics & Data Science"
   subtitle: >
     Join experts from Lionhead Studios, King.com, Nordeus, Jagex, Mind Candy and Scientific
-    Revenue for these masterclasses on state-of-the-art applications of analytics techniques
+    Revenue for a day-long course on state-of-the-art applications of analytics techniques
     using pattern recognition and machine learning.  Learn how to setup player profiling and
     apply them for dynamic pricing or reducing churn in your game or application.
   content: >
@@ -223,12 +326,29 @@
   credit:
     title: Dmitry Nozhnin
     url: http://www.gamasutra.com/blogs/DmitryNozhnin/417356/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 26
 
 - id: systems
   title: "Systemic Design, AI Directors"
   subtitle: >
-    Join experts from Epic Games, CD Projekt Red, Creative Assembly for these
-    masterclasses on industry-leading applications that balance emergent behaviors
+    Join experts from Epic Games, CD Projekt Red, Creative Assembly for a day-long
+    course on industry-leading applications that balance emergent behaviors
     (bottom-up) with designer control and narrative (top-down).  Learn how to use
     AI techniques and design methodologies to control your simulations and guide
     them to provide the desired results for your players — at runtime.
@@ -257,11 +377,28 @@
   credit:
     title: Far Cry 4
     url: http://far-cry.ubi.com/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 27
 
 - id: cognition
   title: "Cognitive Bots & Language"
   subtitle: >
-    Join other professionals in creative industries for a set of masterclasses on cognitive
+    Join other professionals in creative industries for a day-long course on cognitive
     reasoning, natural language processing and chatbots.  Learn how to integrate speech
     recognition and speech synthesis into your applications, see how leading companies are
     using AI techniques to create human-like bots, and more...
@@ -291,3 +428,20 @@
   credit:
     title: IBM Watson
     url: http://www.ibm.com/smarterplanet/us/en/ibmwatson/
+  companies:
+    - Pixar Animation Studios
+    - Ubisoft Montreal
+    - Square Enix
+    - Moving Picture Company
+    - CD Projekt Red
+    - Microsoft Game Studios
+    - Creative Assembly
+    - Bohemia Interactive
+    - Unity Technologies
+    - Epic Games
+    - Lionhead Studios
+    - INRIA Research Lab
+    - Iron Galaxy Studios
+    - MASA Group
+    - CCP Games
+  tickets_left: 27

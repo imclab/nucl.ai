@@ -13,7 +13,7 @@
     {% endfor %}
 {% endfor %}
 
-<section class="tracks-content tracks-text tickets">
+<section class="tracks-content tracks-text">
     <grid>
         <h2>{{item.title}} (Day #{{dayIdx}})</h2>
 
@@ -21,7 +21,54 @@
         <content>
             <h4>{{item.subtitle}}</h4>
             <p class="intro"><span>Now in its 7th edition, <a href="/">nucl.ai</a> brings together hundreds of developers from creative industries and interactive media to resolve the biggest technical and design problems with Artificial Intelligence.  One of the event's tracks focuses specifically on</span> <b>&ldquo;{{item.title}}&rdquo;</b> <span>for an entire day. ({{date}})</span></p>
+        </content>
+    </grid>
+</section>
+<section class="none"></section>
+<section class="tracks-content tracks-text testimonials single-column-testimonials">
+    <grid>
+        <content>
+            <h3>Attending Companies &amp; Studios <span class="tickets-left">{{track.tickets_left}} Day Tickets Left!</span></h3>
+            <div class="block">
+                <ul>
+                {% for company in track.companies %}
+                    {% capture modulo %}{{ forloop.index | modulo:2}}{% endcapture %}
+                    {% if modulo != '0' %}
+                    <li>{{ company }}</li>
+                    {% else %}
+                    {% endif%}
+                {% endfor %}
+                </ul>
+            </div>   
 
+            <div class="block">
+                <ul>
+                {% for company in track.companies %}
+                    {% capture modulo %}{{ forloop.index | modulo:2}}{% endcapture %}
+                    {% if modulo == '0' %}
+                    <li>{{ company }}</li>
+                    {% else %}
+                    {% endif%}
+                {% endfor %}
+                    <li>...</li>
+                </ul>
+            </div>
+            <div class="block testimonials">
+                    {% assign testimonialsInRow = 1 %}
+                    {% assign textBig = true %}
+                    {% include testimonials.html %}
+                    {% assign textBig = false %}
+            </div>
+        
+        <br style="clear: both;"/>
+        </content>
+        <br style="clear: both;"/>
+    </grid>
+</section>
+<section class="none"></section>
+<section class="tracks-content tracks-text tickets">
+    <grid>
+        <content>
         {% for ticket in site.data.track_price %}
             {% if ticket.date and ticket.date != "" %} {% capture row_class %} long {% endcapture %} {% else %} {% capture row_class %} short {% endcapture %} {% endif %}
             <item class="ticket-row ticket-price {{row_class}} {{ticket.type}} bigger">
@@ -101,7 +148,6 @@
 </section>
 
 
-
 <section class="program-schedule track-schedule">
     <a class="anchor" id="schedule"></a>
     <grid class="rooms-schedule">
@@ -115,9 +161,6 @@
         {% include tracks/schedule.html %}
     </grid>
 </section>
-
-
-
 
 
 {% comment %}
