@@ -145,7 +145,11 @@
         });
       }
       return icalButton.click(function() {
-        ical.download(icalButton.attr("filename"));
+        if ($("html").hasClass("safari")) {
+          window.alert("Doesn't supported in Safari");
+        } else {
+          ical.download(icalButton.attr("filename"));
+        }
         return false;
       });
     });
@@ -376,6 +380,9 @@
   $(function() {
     if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
       $("html").addClass("ios");
+    }
+    if (navigator.userAgent.toLowerCase().indexOf("safari") > -1 && navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
+      $("html").addClass("safari");
     }
     $(window).scroll(function() {
       enableSections();

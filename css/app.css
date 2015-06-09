@@ -2496,6 +2496,9 @@ section.program-schedule.track-schedule .ical-button {
     font-size: 0.8em;
   }
 }
+.safari .ical-button {
+  color: #808080 !important;
+}
 section.program-schedule content {
   display: inline;
   float: left;
