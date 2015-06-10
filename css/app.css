@@ -299,6 +299,9 @@ section.splash-screen {
     */
   background-color: #a18d75 !important;
 }
+section.splash-screen .splash-video {
+  display: none !important;
+}
 @media screen and (max-width: 432px) {
   section.splash-screen {
     min-height: 0px;
@@ -314,6 +317,28 @@ section.splash-screen {
     padding: 0px;
   }
 }
+section.splash-screen content.video-link.top {
+  visibility: hidden;
+  margin-top: -3.5em;
+}
+section.splash-screen content.video-link {
+  padding: 0;
+  margin-top: -1em;
+  display: none;
+}
+section.splash-screen content.video-link a {
+  text-decoration: none;
+}
+section.splash-screen content.video-link span.text {
+  width: 100%;
+  display: inline-block;
+  margin: 10px 0;
+}
+@media screen and (max-width: 432px) {
+  section.splash-screen content.video-link {
+    display: block;
+  }
+}
 section.splash-screen .splash-screen-wrap {
   min-height: calc(66.66666666666667vh - 60px);
   background-position: center;
@@ -322,8 +347,14 @@ section.splash-screen .splash-screen-wrap {
 section.splash-screen .splash-screen-wrap.uni-campus-quads {
   background-position-y: 100%;
 }
+@media screen and (max-width: 432px) {
+  section.splash-screen .video-cell {
+    display: none;
+  }
+}
 section.splash-screen .table {
   height: calc(66.66666666666667vh - 60px);
+  width: 100%;
 }
 section.splash-screen navigation-fantom {
   display: block;
@@ -1721,14 +1752,6 @@ section.testimonials.full-width grid content .testimonial {
   width: 31.25%;
   margin: 0 1.04166667%;
   display: none;
-}
-@media screen and (max-width: 432px) {
-  section.testimonials.full-width grid content .testimonial {
-    display: inline;
-    float: left;
-    width: 34.09090909%;
-    margin: 0 1.13636364%;
-  }
 }
 section.testimonials.full-width grid content .testimonial.left {
   margin-left: 9.375%;
