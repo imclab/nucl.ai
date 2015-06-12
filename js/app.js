@@ -145,7 +145,11 @@
         });
       }
       return icalButton.click(function() {
-        ical.download(icalButton.attr("filename"));
+        if ($("html").hasClass("safari")) {
+          window.alert("Doesn't supported in Safari");
+        } else {
+          ical.download(icalButton.attr("filename"));
+        }
         return false;
       });
     });
@@ -226,7 +230,7 @@
 }).call(this);
 
 (function() {
-  var LONG_INTERAL, SHORT_INTERVAL, effectIn, effectOut;
+  var LONG_INTERAL, SHORT_INTERVAL, animationType, effectIn, effectOut;
 
   effectIn = "flipInX";
 
@@ -236,49 +240,80 @@
 
   LONG_INTERAL = 10000;
 
+  animationType = "";
+
   $(function() {
-    var change, idxCurrent, next, pair, select, testimonials;
-    testimonials = $(".testimonial").toArray();
-    idxCurrent = 0;
-    pair = 0;
-    change = function() {
-      var interval;
-      interval = LONG_INTERAL;
-      if (idxCurrent % 2 !== 0) {
-        interval = SHORT_INTERVAL;
-      }
-      return setTimeout(select, interval);
-    };
-    next = function(idx, incBy) {
-      idx += incBy;
-      if (idx === testimonials.length) {
-        return 0;
-      }
-      if (idx === testimonials.length + 1) {
-        return 1;
-      }
-      return idx;
-    };
-    select = function() {
-      var nextIdx, wasCurrent;
-      if (pair === 2) {
+    var sections;
+    sections = [];
+    return $("section.testimonials").each(function() {
+      var change, idxCurrent, next, pair, select, testimonials;
+      testimonials = $(this).find(".testimonial").toArray();
+      if ($(this).hasClass("domino")) {
+        idxCurrent = 0;
+        pair = 0;
+        change = function() {
+          var interval;
+          interval = LONG_INTERAL;
+          if (idxCurrent % 2 !== 0) {
+            interval = SHORT_INTERVAL;
+          }
+          return setTimeout(select, interval);
+        };
+        next = function(idx, incBy) {
+          idx += incBy;
+          if (idx === testimonials.length) {
+            return 0;
+          }
+          if (idx === testimonials.length + 1) {
+            return 1;
+          }
+          return idx;
+        };
+        select = function() {
+          var nextIdx, wasCurrent;
+          if (pair === 2) {
+            return change();
+          }
+          pair += 1;
+          $(testimonials[idxCurrent]).removeClass(effectIn);
+          $(testimonials[idxCurrent]).addClass(effectOut);
+          wasCurrent = idxCurrent;
+          nextIdx = next(idxCurrent, 2);
+          idxCurrent = next(idxCurrent, 1);
+          change();
+          return $(testimonials[wasCurrent]).one(animate.onAnimatedEnd, function(data) {
+            if (animationType === "") {
+              animationType = data.type;
+            } else if (animationType !== data.type) {
+              return;
+            }
+            pair -= 1;
+            $(testimonials[wasCurrent]).removeClass("selected");
+            $(testimonials[nextIdx]).removeClass(effectOut);
+            return $(testimonials[nextIdx]).addClass("selected " + effectIn);
+          });
+        };
         return change();
       }
-      pair += 1;
-      $(testimonials[idxCurrent]).removeClass(effectIn);
-      $(testimonials[idxCurrent]).addClass(effectOut);
-      wasCurrent = idxCurrent;
-      nextIdx = next(idxCurrent, 2);
-      idxCurrent = next(idxCurrent, 1);
-      change();
-      return $(testimonials[wasCurrent]).one(animate.onAnimatedEnd, function() {
-        pair -= 1;
-        $(testimonials[wasCurrent]).removeClass("selected");
-        $(testimonials[nextIdx]).removeClass(effectOut);
-        return $(testimonials[nextIdx]).addClass("selected " + effectIn);
-      });
-    };
-    return change();
+      idxCurrent = 0;
+      select = function() {
+        $(testimonials[idxCurrent]).removeClass(effectIn);
+        $(testimonials[idxCurrent]).addClass(effectOut);
+        return $(testimonials[idxCurrent]).one(animate.onAnimatedEnd, function(data) {
+          if (animationType === "") {
+            animationType = data.type;
+          } else if (animationType !== data.type) {
+            return;
+          }
+          $(testimonials[idxCurrent]).removeClass("selected");
+          idxCurrent = idxCurrent === testimonials.length - 1 ? idxCurrent = 0 : idxCurrent + 1;
+          $(testimonials[idxCurrent]).removeClass(effectOut);
+          $(testimonials[idxCurrent]).addClass("selected " + effectIn);
+          return setTimeout(select, LONG_INTERAL);
+        });
+      };
+      return select();
+    });
   });
 
 }).call(this);
@@ -345,6 +380,9 @@
   $(function() {
     if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
       $("html").addClass("ios");
+    }
+    if (navigator.userAgent.toLowerCase().indexOf("safari") > -1 && navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
+      $("html").addClass("safari");
     }
     $(window).scroll(function() {
       enableSections();

@@ -1,3 +1,25 @@
+section.testimonials.full-width {
+    grid {
+        content {
+            min-height: 16em;
+            @media screen and (max-width: (@SMARTPHONE_MAX_PORTRAIT * 1.8)) { min-height: 20em; }
+            @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { min-height: 16em; }
+            @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { .row(11); }
+            .testimonial {
+                .column(4);
+                &.left {
+                    .push(1);
+                }
+                &.right {
+                    float: right;
+                    .pull(1);
+                }
+                display: none;
+            }
+        }
+    }
+}
+
 section.testimonials {
     min-height: 0px;
     grid {
@@ -6,27 +28,14 @@ section.testimonials {
             /**
             * Dislike these differet fixed sizes here.
             */
-            height: 16em;
-            @media screen and (max-width: (@SMARTPHONE_MAX_PORTRAIT * 1.8)) { height: 20em; }
-            @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { height: 16em; }
-            @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { .row(11); }
             .testimonial {
                 text-align: justify;
-                .column(4);
                 @media screen and (max-width: @SMARTPHONE_MAX_PORTRAIT) { 
-                    .column(4,11); 
                     display: none;
                     &.selected {
                         display: inline-block;
                     }
                 
-                }
-                &.left {
-                    .push(1);
-                }
-                &.right {
-                    float: right;
-                    .pull(1);
                 }
                 display: none;
                 &.selected {

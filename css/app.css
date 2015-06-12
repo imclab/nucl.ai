@@ -61,14 +61,14 @@ sections.page section.tickets content div.table-comments p {
   }
 }
 .wide,
-section.tracks-content.tracks-text content p.intro,
-section.tracks-content.tracks-text content li.intro {
+sections.page section.tracks-content.tracks-text content p.intro,
+sections.page section.tracks-content.tracks-text content li.intro {
   line-height: 1.5;
 }
 @media screen and (max-width: 432px) {
   .wide,
-  section.tracks-content.tracks-text content p.intro,
-  section.tracks-content.tracks-text content li.intro {
+  sections.page section.tracks-content.tracks-text content p.intro,
+  sections.page section.tracks-content.tracks-text content li.intro {
     line-height: 1.2;
   }
 }
@@ -90,14 +90,14 @@ tt {
   }
 }
 .big,
-section.tracks-content.tracks-text content p.intro,
-section.tracks-content.tracks-text content li.intro {
+sections.page section.tracks-content.tracks-text content p.intro,
+sections.page section.tracks-content.tracks-text content li.intro {
   font-size: 1.5em;
 }
 @media screen and (max-width: 432px) {
   .big,
-  section.tracks-content.tracks-text content p.intro,
-  section.tracks-content.tracks-text content li.intro {
+  sections.page section.tracks-content.tracks-text content p.intro,
+  sections.page section.tracks-content.tracks-text content li.intro {
     font-size: 0.8em;
   }
 }
@@ -109,11 +109,13 @@ section.tracks-content.tracks-text content li.intro {
     font-size: 0.8em;
   }
 }
-.smaller {
+.smaller,
+sections.page section.testimonials content {
   font-size: 0.8em;
 }
 @media screen and (max-width: 432px) {
-  .smaller {
+  .smaller,
+  sections.page section.testimonials content {
     font-size: 0.6em;
   }
 }
@@ -279,6 +281,7 @@ footer content icons a.social {
   margin: 0 5px;
 }
 footer content .copyrights {
+  opacity: 0.5;
   padding: 0;
   margin: 0;
 }
@@ -296,6 +299,9 @@ section.splash-screen {
     */
   background-color: #a18d75 !important;
 }
+section.splash-screen .splash-video {
+  display: none !important;
+}
 @media screen and (max-width: 432px) {
   section.splash-screen {
     min-height: 0px;
@@ -311,6 +317,28 @@ section.splash-screen {
     padding: 0px;
   }
 }
+section.splash-screen content.video-link.top {
+  visibility: hidden;
+  margin-top: -3.5em;
+}
+section.splash-screen content.video-link {
+  padding: 0;
+  margin-top: -1em;
+  display: none;
+}
+section.splash-screen content.video-link a {
+  text-decoration: none;
+}
+section.splash-screen content.video-link span.text {
+  width: 100%;
+  display: inline-block;
+  margin: 10px 0;
+}
+@media screen and (max-width: 432px) {
+  section.splash-screen content.video-link {
+    display: block;
+  }
+}
 section.splash-screen .splash-screen-wrap {
   min-height: calc(66.66666666666667vh - 60px);
   background-position: center;
@@ -319,8 +347,14 @@ section.splash-screen .splash-screen-wrap {
 section.splash-screen .splash-screen-wrap.uni-campus-quads {
   background-position-y: 100%;
 }
+@media screen and (max-width: 432px) {
+  section.splash-screen .video-cell {
+    display: none;
+  }
+}
 section.splash-screen .table {
   height: calc(66.66666666666667vh - 60px);
+  width: 100%;
 }
 section.splash-screen navigation-fantom {
   display: block;
@@ -1683,6 +1717,49 @@ div.featured-wrap featured .call-for-speakers .icon-and-title icon.megaphone {
   transition: 0.5s;
   transition-property: transform;
 }
+section.testimonials.full-width grid content {
+  min-height: 16em;
+}
+@media screen and (max-width: 777.6px) {
+  section.testimonials.full-width grid content {
+    min-height: 20em;
+  }
+}
+@media screen and (max-width: 432px) {
+  section.testimonials.full-width grid content {
+    min-height: 16em;
+  }
+}
+@media screen and (max-width: 432px) {
+  section.testimonials.full-width grid content {
+    display: block;
+    width: 102.27272727%;
+    margin: 0 -1.13636364%;
+    *zoom: 1;
+  }
+  section.testimonials.full-width grid content:before,
+  section.testimonials.full-width grid content:after {
+    content: "";
+    display: table;
+  }
+  section.testimonials.full-width grid content:after {
+    clear: both;
+  }
+}
+section.testimonials.full-width grid content .testimonial {
+  display: inline;
+  float: left;
+  width: 31.25%;
+  margin: 0 1.04166667%;
+  display: none;
+}
+section.testimonials.full-width grid content .testimonial.left {
+  margin-left: 9.375%;
+}
+section.testimonials.full-width grid content .testimonial.right {
+  float: right;
+  margin-right: 9.375%;
+}
 section.testimonials {
   min-height: 0px;
 }
@@ -1693,60 +1770,18 @@ section.testimonials grid content {
   /**
             * Dislike these differet fixed sizes here.
             */
-  height: 16em;
-}
-@media screen and (max-width: 777.6px) {
-  section.testimonials grid content {
-    height: 20em;
-  }
-}
-@media screen and (max-width: 432px) {
-  section.testimonials grid content {
-    height: 16em;
-  }
-}
-@media screen and (max-width: 432px) {
-  section.testimonials grid content {
-    display: block;
-    width: 102.27272727%;
-    margin: 0 -1.13636364%;
-    *zoom: 1;
-  }
-  section.testimonials grid content:before,
-  section.testimonials grid content:after {
-    content: "";
-    display: table;
-  }
-  section.testimonials grid content:after {
-    clear: both;
-  }
 }
 section.testimonials grid content .testimonial {
   text-align: justify;
-  display: inline;
-  float: left;
-  width: 31.25%;
-  margin: 0 1.04166667%;
   display: none;
 }
 @media screen and (max-width: 432px) {
   section.testimonials grid content .testimonial {
-    display: inline;
-    float: left;
-    width: 34.09090909%;
-    margin: 0 1.13636364%;
     display: none;
   }
   section.testimonials grid content .testimonial.selected {
     display: inline-block;
   }
-}
-section.testimonials grid content .testimonial.left {
-  margin-left: 9.375%;
-}
-section.testimonials grid content .testimonial.right {
-  float: right;
-  margin-right: 9.375%;
 }
 section.testimonials grid content .testimonial.selected {
   display: inline-block;
@@ -2031,43 +2066,43 @@ sections.page section.room content item.text img {
 #section-tracks-menu grid {
   padding-bottom: 0;
 }
-section.thumbnails-grid.tracks content div.thumbnails {
+sections.page section.thumbnails-grid.tracks content div.thumbnails {
   display: block;
   width: 102.5%;
   margin: 0 -1.25%;
   *zoom: 1;
   margin-bottom: 1em;
 }
-section.thumbnails-grid.tracks content div.thumbnails:before,
-section.thumbnails-grid.tracks content div.thumbnails:after {
+sections.page section.thumbnails-grid.tracks content div.thumbnails:before,
+sections.page section.thumbnails-grid.tracks content div.thumbnails:after {
   content: "";
   display: table;
 }
-section.thumbnails-grid.tracks content div.thumbnails:after {
+sections.page section.thumbnails-grid.tracks content div.thumbnails:after {
   clear: both;
 }
-section.thumbnails-grid.tracks content div.thumbnails item.thumbnail.ambient {
+sections.page section.thumbnails-grid.tracks content div.thumbnails item.thumbnail.ambient {
   margin-left: 11.25%;
 }
 @media screen and (max-width: 432px) {
-  section.thumbnails-grid.tracks content div.thumbnails item.thumbnail .thumbnail-title {
+  sections.page section.thumbnails-grid.tracks content div.thumbnails item.thumbnail .thumbnail-title {
     font-size: 0.6em;
   }
 }
-section.thumbnails-grid.tracks.program content div.thumbnails {
+sections.page section.thumbnails-grid.tracks.program content div.thumbnails {
   margin-top: 1em;
   margin-bottom: 2em;
 }
-section.tracks-content.tracks-text span.date-day {
+sections.page section.tracks-content.tracks-text span.date-day {
   display: none;
 }
-section.tracks-content.tracks-text content {
+sections.page section.tracks-content.tracks-text content {
   display: inline;
   float: left;
   width: 97.91666667%;
   margin: 0 1.04166667%;
 }
-section.tracks-content.tracks-text content h4 {
+sections.page section.tracks-content.tracks-text content h4 {
   font-size: 1.34em;
   line-height: 1.34;
   text-align: justify;
@@ -2075,88 +2110,149 @@ section.tracks-content.tracks-text content h4 {
   color: #a5cce9;
 }
 @media screen and (max-width: 432px) {
-  section.tracks-content.tracks-text content h4 {
+  sections.page section.tracks-content.tracks-text content h4 {
     font-size: 1em;
   }
 }
-section.tracks-content.tracks-text content p span,
-section.tracks-content.tracks-text content li span {
+sections.page section.tracks-content.tracks-text content p span,
+sections.page section.tracks-content.tracks-text content li span {
   opacity: 0.85;
 }
-section.tracks-content.tracks-text content p.intro,
-section.tracks-content.tracks-text content li.intro {
+sections.page section.tracks-content.tracks-text content p.intro,
+sections.page section.tracks-content.tracks-text content li.intro {
   font-size: 1.34em;
   line-height: 1.34;
   text-align: justify;
   margin: 1em 0 2em 0;
 }
 @media screen and (max-width: 432px) {
-  section.tracks-content.tracks-text content p.intro,
-  section.tracks-content.tracks-text content li.intro {
+  sections.page section.tracks-content.tracks-text content p.intro,
+  sections.page section.tracks-content.tracks-text content li.intro {
     font-size: 1em;
     margin: 0 1em 1em;
   }
 }
-section.tracks-content.tracks-text content img {
+sections.page section.tracks-content.tracks-text content img {
   width: 100%;
   margin: 1em 0 0 0;
 }
-section.tracks-content.tracks-text content .credit {
+sections.page section.tracks-content.tracks-text content .credit {
   margin-top: 0;
   margin-bottom: 1.5em;
   text-align: right;
   color: #808080;
 }
-section.tracks-content.tracks-text.tickets {
+sections.page section.tracks-content.tracks-text.tickets {
   /* tickets section tweaks */
 }
-section.tracks-content.tracks-text.tickets item.ticket-row {
+sections.page section.tracks-content.tracks-text.tickets item.ticket-row {
   margin-left: 9.375%;
 }
-section.thumbnails-grid.tracks-content content {
+sections.page section.thumbnails-grid.tracks-content content {
   display: inline;
   float: left;
   width: 97.91666667%;
   margin: 0 1.04166667%;
 }
-section.thumbnails-grid.tracks-content content h3 a {
+sections.page section.thumbnails-grid.tracks-content content h3 a {
   color: #ffffff !important;
   text-decoration: none;
 }
-section.thumbnails-grid.tracks-content content h3 a:not(.wip):hover {
+sections.page section.thumbnails-grid.tracks-content content h3 a:not(.wip):hover {
   color: #ff9300 !important;
 }
-section.thumbnails-grid.tracks-content content item.talk {
+sections.page section.thumbnails-grid.tracks-content content item.talk {
   width: 100%;
   float: left;
   clear: both;
 }
-section.thumbnails-grid.tracks-content content item.talk .description {
+sections.page section.thumbnails-grid.tracks-content content item.talk .description {
   text-align: justify;
   opacity: 0.85;
 }
-section.thumbnails-grid.tracks-content content item.talk.wip {
+sections.page section.thumbnails-grid.tracks-content content item.talk.wip {
   opacity: 0.8;
 }
-section.thumbnails-grid.tracks-content content item.talk.wip .thumbnails {
+sections.page section.thumbnails-grid.tracks-content content item.talk.wip .thumbnails {
   display: none;
 }
-section.thumbnails-grid.tracks-content content item.talk.wip div.description {
+sections.page section.thumbnails-grid.tracks-content content item.talk.wip div.description {
   display: none;
 }
-section.thumbnails-grid.tracks-content content .thumbnails item.thumbnail h3 {
+sections.page section.thumbnails-grid.tracks-content content .thumbnails item.thumbnail h3 {
   margin-top: 5px;
 }
-section.thumbnails-grid.tracks-content content .thumbnails item.thumbnail h3.disabled {
+sections.page section.thumbnails-grid.tracks-content content .thumbnails item.thumbnail h3.disabled {
   margin-top: -14%;
 }
-section.thumbnails-grid.tracks-content content .thumbnails.thumbnails-5-in-row item.thumbnail h3.disabled {
+sections.page section.thumbnails-grid.tracks-content content .thumbnails.thumbnails-5-in-row item.thumbnail h3.disabled {
   margin-top: -5%;
 }
 @media screen and (max-width: 432px) {
-  section.thumbnails-grid.tracks-content content .big ul {
+  sections.page section.thumbnails-grid.tracks-content content .big ul {
     font-size: 1em;
   }
+}
+sections.page section.testimonials {
+  margin-top: -3em;
+}
+sections.page section.testimonials content {
+  min-height: 20em;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.testimonials content {
+    font-size: 0.8em;
+  }
+}
+sections.page section.testimonials content h3 {
+  font-size: 21.4333px;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.testimonials content h3 {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 25px;
+  }
+}
+sections.page section.testimonials content h3 span.tickets-left {
+  float: right;
+  color: #ff9300;
+  text-decoration: underline;
+  text-transform: uppercase;
+  font-size: 18px;
+  white-space: nowrap;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.testimonials content h3 span.tickets-left {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+}
+sections.page section.testimonials content div.block {
+  display: inline;
+  float: left;
+  width: 31.25%;
+  margin: 0 1.04166667%;
+}
+sections.page section.testimonials content div.block.testimonials {
+  min-height: 21.5em;
+}
+@media screen and (max-width: 432px) {
+  sections.page section.testimonials content div.block {
+    display: inline;
+    float: left;
+    width: 97.91666667%;
+    margin: 0 1.04166667%;
+  }
+  sections.page section.testimonials content div.block.testimonials {
+    min-height: 16em;
+  }
+}
+sections.page section.testimonials content div.block .testimonial {
+  opacity: 0.85;
 }
 sections.page section.tickets content {
   display: inline;
@@ -2444,6 +2540,9 @@ section.program-schedule.track-schedule .ical-button {
   section.program-schedule.track-schedule .ical-button {
     font-size: 0.8em;
   }
+}
+.safari .ical-button {
+  color: #808080 !important;
 }
 section.program-schedule content {
   display: inline;
