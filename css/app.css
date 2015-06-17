@@ -1430,6 +1430,52 @@ gallery descriptions item.selected img {
 gallery descriptions item {
   height: auto;
 }
+popup {
+  display: none;
+  opacity: 0;
+  border: 5px solid;
+  z-index: 100;
+  border-radius: 15px;
+  background-color: #f1f0ef;
+  position: fixed;
+  width: 600px;
+  min-height: 200px;
+  left: calc(50vw - 300px);
+  top: calc(50vh - 150px);
+  -webkit-transition: 0.5s all;
+  /* For Safari 3.1 to 6.0 */
+  transition: 0.5s all;
+}
+popup p.close {
+  margin: 0;
+  text-align: right;
+  padding: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+popup.alert {
+  font-weight: bold;
+  color: #ff9300;
+  border-color: #ff9300;
+}
+popup.alert p.close {
+  background-color: #ff9300;
+  color: #ffffff;
+}
+@media screen and (max-width: 432px) {
+  popup {
+    width: 300px;
+    min-height: 100px;
+    left: calc(50vw - 150px);
+    top: calc(50vh - 50px);
+    border-radius: 8px;
+  }
+}
+popup.active {
+  display: inline-block;
+  visibility: visible;
+  opacity: 1;
+}
 .landing section.about {
   background: none;
   position: relative;
