@@ -146,7 +146,7 @@
       }
       return icalButton.click(function() {
         if ($("html").hasClass("safari")) {
-          window.alert("Doesn't supported in Safari");
+          $("popup.ical").addClass("active");
         } else {
           ical.download(icalButton.attr("filename"));
         }
@@ -1024,6 +1024,15 @@
       });
     };
     return google.maps.event.addDomListener(window, 'load', initialize);
+  });
+
+}).call(this);
+
+(function() {
+  $(function() {
+    return $("popup .close").click(function() {
+      return $(this).parent().removeClass("active");
+    });
   });
 
 }).call(this);
