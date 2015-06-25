@@ -43,10 +43,12 @@ $ ->
 
     timerName = timer.attr("name")
 
-    options = if timer.parent().hasClass("mobile") then $.extend({}, defaultOptions, mobileOptions) else defaultOptions
+    options = if timer.parent().parent().hasClass("mobile") then $.extend({}, defaultOptions, mobileOptions) else defaultOptions
 
     timer.find("clock").each ->
       clocks.push $(@).easyPieChart options
+
+    timer.parent().show()
 
     timer.countdown timer.attr("count-to"), (event) ->
       if event.type == "finish" && timer.attr("on-finish")
