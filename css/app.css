@@ -291,134 +291,25 @@ footer content .copyrights {
   }
 }
 section.splash-screen {
-  position: relative;
-  min-height: calc(66.66666667vh);
+  /** LOGO */
+  /** navigation */
   overflow: visible;
   /**
     * For single page layout
     */
-  background-color: #a18d75 !important;
 }
-section.splash-screen .splash-video {
-  display: none !important;
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen {
-    min-height: 0px;
-  }
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen grid {
-    padding: 0px;
-  }
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen content {
-    padding: 0px;
-  }
-}
-section.splash-screen content.video-link.top {
-  visibility: hidden;
-  margin-top: -3.5em;
-}
-section.splash-screen content.video-link {
-  padding: 0;
-  margin-top: -1em;
-  display: none;
-}
-section.splash-screen content.video-link a {
-  text-decoration: none;
-}
-section.splash-screen content.video-link span.text {
-  width: 100%;
-  display: inline-block;
-  margin: 10px 0;
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen content.video-link {
-    display: block;
-  }
-}
-section.splash-screen .splash-screen-wrap {
-  min-height: calc(66.66666666666667vh - 60px);
-  background-position: center;
-  background-size: cover;
-}
-section.splash-screen .splash-screen-wrap.uni-campus-quads {
-  background-position-y: 100%;
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen .video-cell {
-    display: none;
-  }
-}
-section.splash-screen .table {
-  height: calc(66.66666666666667vh - 60px);
-  width: 100%;
-}
-section.splash-screen navigation-fantom {
-  display: block;
-  height: 60px;
-  width: 100%;
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen navigation-fantom {
-    height: 40px;
-  }
-}
-.page section.splash-screen {
-  min-height: calc(33.333333333333336vh + 60px);
-}
-.page section.splash-screen .splash-screen-wrap {
-  min-height: 33.33333333vh;
-}
-.page section.splash-screen .table {
-  height: 33.33333333vh;
-}
-.page section.splash-screen splash content titles h1 {
-  margin-bottom: -5px;
-}
-.page section.splash-screen splash content logo {
-  display: none;
-}
-.page section.splash-screen .table,
-.page section.splash-screen content {
-  width: 100%;
-}
-@media screen and (max-width: 432px) {
-  .page section.splash-screen content {
-    font-size: 0.75em;
-  }
-}
-section.splash-screen splash {
-  display: block;
-  background-color: rgba(34, 44, 66, 0.75);
-  min-height: inherit;
-  text-align: center;
-  width: 100%;
-}
-section.splash-screen splash content {
-  padding: 3em 0;
-  display: inline-block;
-  text-align: center;
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen splash content {
-    padding: 20px 0;
-  }
-}
-section.splash-screen splash content logo-wrap {
+section.splash-screen logo-wrap {
   display: block;
   transition: 1.25s;
 }
-section.splash-screen splash content logo-wrap.rotated {
+section.splash-screen logo-wrap.rotated {
   -ms-transform: rotate(144deg);
   /* IE 9 */
   -webkit-transform: rotate(144deg);
   /* Chrome, Safari, Opera */
   transform: rotate(144deg);
 }
-section.splash-screen splash content logo-wrap logo {
+section.splash-screen logo-wrap logo {
   display: block;
   background-repeat: no-repeat;
   background-size: contain;
@@ -428,35 +319,87 @@ section.splash-screen splash content logo-wrap logo {
   opacity: 0.65;
 }
 @media screen and (max-width: 432px) {
-  section.splash-screen splash content logo-wrap logo {
+  section.splash-screen logo-wrap logo {
     height: 80px;
   }
 }
-section.splash-screen splash content titles {
-  transition: 1.5s;
-  display: block;
-  padding: 15px 0;
+section.splash-screen .stream-link {
+  display: none;
+}
+section.splash-screen .right-cell {
+  width: 50%;
 }
 @media screen and (max-width: 432px) {
-  section.splash-screen splash content titles {
-    padding: 10px 0;
+  section.splash-screen .right-cell {
+    display: none;
   }
 }
-section.splash-screen splash content titles h1 {
+section.splash-screen .bottom-cell {
+  display: none;
+}
+@media screen and (max-width: 432px) {
+  section.splash-screen .bottom-cell {
+    display: block;
+    padding-bottom: 40px;
+  }
+}
+section.splash-screen .splash-screen-wrap {
+  background-position: center;
+  background-size: cover;
+}
+section.splash-screen .splash-screen-wrap.uni-campus-quads {
+  background-position-y: 100%;
+}
+section.splash-screen .splash-screen-wrap > splash {
+  display: block;
+  background-color: rgba(34, 44, 66, 0.75);
+}
+section.splash-screen .splash-screen-wrap > splash > grid {
+  min-height: calc(66.66666666666667vh - 60px);
+  height: calc(66.66666666666667vh - 60px);
+  padding-bottom: 0;
+}
+@media screen and (max-width: 432px) {
+  section.splash-screen .splash-screen-wrap > splash > grid {
+    min-height: 0px;
+    height: 0px;
+  }
+}
+section.splash-screen .splash-screen-wrap > splash > grid > content {
+  padding: 35px 0;
+  -webkit-transition: 1.5s opacity;
+  /* For Safari 3.1 to 6.0 */
+  transition: 1.5s opacity;
+}
+section.splash-screen .splash-screen-wrap > splash > grid > content > logo-wrap {
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 432px) {
+  section.splash-screen .splash-screen-wrap > splash > grid > content {
+    padding: 40px 0;
+  }
+}
+section.splash-screen .splash-screen-wrap > splash > grid > content h1 {
   font-size: 7em;
   margin: 0;
   padding: 0;
   text-shadow: 0px 0px 4px #808080;
 }
-.ios section.splash-screen splash content titles h1 {
+.ios section.splash-screen .splash-screen-wrap > splash > grid > content h1 {
   text-shadow: none;
 }
 @media screen and (max-width: 432px) {
-  section.splash-screen splash content titles h1 {
+  section.splash-screen .splash-screen-wrap > splash > grid > content h1 {
     font-size: 3em;
   }
 }
-section.splash-screen splash content titles h2 {
+section.splash-screen .splash-screen-wrap > splash > grid > content h1 a,
+section.splash-screen .splash-screen-wrap > splash > grid > content h1 a:hover {
+  text-decoration: none;
+  color: white;
+  opacity: 1.0;
+}
+section.splash-screen .splash-screen-wrap > splash > grid > content h2 {
   margin: 0;
   font-size: 1.2em;
   padding: 8px 0;
@@ -464,86 +407,66 @@ section.splash-screen splash content titles h2 {
   opacity: 0.75;
 }
 @media screen and (max-width: 432px) {
-  section.splash-screen splash content titles h2 {
+  section.splash-screen .splash-screen-wrap > splash > grid > content h2 {
     padding: 5px 0;
     font-size: 0.4em;
   }
 }
-section.splash-screen splash content titles .left {
-  display: inline;
-  float: left;
-  width: 47.91666667%;
-  margin: 0 1.04166667%;
+.page section.splash-screen .splash-screen-wrap > splash > grid {
+  min-height: 0px;
+  height: 0px;
+  padding: 100px 0;
 }
-@media screen and (max-width: 650px) {
-  section.splash-screen splash content titles .left {
+@media screen and (max-width: 432px) {
+  .page section.splash-screen .splash-screen-wrap > splash > grid {
+    padding: 35px 0;
+  }
+}
+.page section.splash-screen .splash-screen-wrap > splash > grid content {
+  display: table;
+  width: 100%;
+}
+.page section.splash-screen .splash-screen-wrap > splash > grid content logo-wrap {
+  display: none;
+}
+@media screen and (max-width: 432px) {
+  .page section.splash-screen .splash-screen-wrap > splash > grid content {
+    display: inline;
+  }
+}
+.page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell {
+  width: 50%;
+}
+@media screen and (max-width: 432px) {
+  .page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell {
+    display: inline;
     width: 100%;
   }
 }
-section.splash-screen splash content titles .left h1 {
-  transition: all 0.5s;
-  font-size: 6.5em;
+.page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell h1 {
+  margin-top: 0px;
   opacity: 0.85;
 }
-section.splash-screen splash content titles .left h1 a,
-section.splash-screen splash content titles .left h1 a:hover {
-  text-decoration: none;
-  color: white;
-}
-section.splash-screen splash content titles .left h1:hover {
-  opacity: 1.0;
-}
 @media screen and (max-width: 432px) {
-  section.splash-screen splash content titles .left h1 {
-    font-size: 5.8em;
+  .page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell h1 {
+    font-size: 4.5em;
   }
 }
-@media screen and (max-width: 432px) {
-  section.splash-screen splash content titles .left h2 {
-    font-size: 1em;
-  }
-}
-section.splash-screen splash content titles .right {
-  display: inline;
-  float: left;
-  width: 47.91666667%;
-  margin: 0 1.04166667%;
-}
-@media screen and (max-width: 650px) {
-  section.splash-screen splash content titles .right {
-    width: 100%;
-  }
-}
-section.splash-screen splash content titles .right h2 {
+.page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell h2 {
   font-size: 1.5em;
-  color: #FFF;
 }
-@media screen and (min-width: 433px) {
-  section.splash-screen splash content titles .right h2:first-of-type {
-    padding-top: 30px;
-  }
-}
-@media screen and (max-width: 432px) {
-  section.splash-screen splash content titles .right h2 {
-    padding-top: 7px;
-    font-size: 1em;
-  }
-}
-section.splash-screen splash content titles .right h2.note {
+.page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell h2.note {
   opacity: 1;
 }
-section.splash-screen splash content titles .right h2.note a,
-section.splash-screen splash content titles .right h2.note span {
-  text-decoration: underline;
+.page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell h2.note a {
   color: #ff9300;
-  font-weight: bold;
   text-transform: uppercase;
-  font-size: 13.5pt;
+  font-weight: bold;
+  font-size: 0.8em;
 }
 @media screen and (max-width: 432px) {
-  section.splash-screen splash content titles .right h2.note a,
-  section.splash-screen splash content titles .right h2.note span {
-    font-size: 8pt;
+  .page section.splash-screen .splash-screen-wrap > splash > grid content .centered-cell h2 {
+    font-size: 0.78em;
   }
 }
 /** 
@@ -858,8 +781,6 @@ sections section.navigation {
   background-color: #103f69;
   z-index: 3;
   width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 @media screen and (max-width: 432px) {
   sections section.navigation {
@@ -1019,6 +940,7 @@ sections section.navigation grid content item .dropdown {
   position: absolute;
   top: -1000px;
   margin-top: 15px;
+  z-index: 2;
 }
 @media screen and (max-width: 432px) {
   sections section.navigation grid content item .dropdown {
@@ -1193,10 +1115,6 @@ section h2 {
   /* For Safari 3.1 to 6.0 */
   transition: opacity 0.5s ease-in-out;
 }
-section:first-child content,
-section:first-child h2 {
-  opacity: 1;
-}
 form.newsletter-form {
   margin: 3em 0 2em 0;
 }
@@ -1251,6 +1169,9 @@ form.newsletter-form div.fieldgroup {
 }
 form.newsletter-form div.submit-holder {
   text-align: center;
+}
+div.dashboard-wrap {
+  display: none;
 }
 timer-dashboard {
   display: block;
@@ -1962,32 +1883,43 @@ section.news-feed content tr:last-child > td {
 }
 section.stream {
   min-height: 0px;
-}
-section.stream content {
   text-align: center;
 }
-section.stream content a {
+section.stream a {
   cursor: pointer;
 }
-section.stream content a span.button {
+section.stream a span.button {
   font-size: 3em;
 }
 @media screen and (max-width: 432px) {
-  section.stream content a span.button {
+  section.stream a span.button {
     font-size: 1.25em;
   }
 }
-section.stream content a span.announcement {
+section.stream a span.announcement {
   display: none;
 }
-section.stream content a span.announcement.block {
+section.stream a span.announcement.block {
   display: block;
   font-size: 1.5em;
   padding-top: 1em;
 }
 @media screen and (max-width: 432px) {
-  section.stream content a span.announcement.block {
+  section.stream a span.announcement.block {
     font-size: 0.8em;
+  }
+}
+#yt-iframe {
+  width: 896px;
+  height: 504px;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+@media screen and (max-width: 432px) {
+  #yt-iframe {
+    width: 280px;
+    height: 157px;
+    margin-bottom: 0em;
   }
 }
 sections.page section.contact content {
