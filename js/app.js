@@ -1040,8 +1040,7 @@
 (function() {
   $(function() {
     $('logo-wrap').addClass("rotated");
-    $('logo-wrap').removeClass("opacity0");
-    return $('titles').removeClass("opacity0");
+    return $('content').removeClass("opacity0");
   });
 
 }).call(this);
@@ -1421,10 +1420,11 @@
         return;
       }
       timerName = timer.attr("name");
-      options = timer.parent().hasClass("mobile") ? $.extend({}, defaultOptions, mobileOptions) : defaultOptions;
+      options = timer.parent().parent().hasClass("mobile") ? $.extend({}, defaultOptions, mobileOptions) : defaultOptions;
       timer.find("clock").each(function() {
         return clocks.push($(this).easyPieChart(options));
       });
+      timer.parent().show();
       return timer.countdown(timer.attr("count-to"), function(event) {
         if (event.type === "finish" && timer.attr("on-finish")) {
           eval(timer.attr("on-finish"));
